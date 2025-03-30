@@ -1,3 +1,5 @@
+import './SecondRowAllCargos.css'
+
 function SecondRowAllCargos({ cargos, setCargos }) {
   const deleteCargo = (uuid) => {
     const updatedCargos = cargos.filter((x) => x.id !== uuid)

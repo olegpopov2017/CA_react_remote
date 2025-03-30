@@ -1,21 +1,51 @@
+import './FirstRowCreate.css'
 import { useState } from 'react'
 
 function FirstRowCreate({ cargos, setCargos }) {
-  const [inpWidth, setInpWidth] = useState(0)
-  const [inpHeight, setInpHeight] = useState(0)
-  const [inpLenght, setInpLenght] = useState(0)
-  const [inpXpos, setInpXpos] = useState(0)
-  const [inpYpos, setInpYpos] = useState(0)
-  const [inpZpos, setInpZpos] = useState(0)
+  const [inpWidth, setInpWidth] = useState('')
+  const [inpHeight, setInpHeight] = useState('')
+  const [inpDepth, setInpDepth] = useState('')
+  const [inpXpos, setInpXpos] = useState('')
+  const [inpYpos, setInpYpos] = useState('')
+  const [inpZpos, setInpZpos] = useState('')
+  const [inpQuantity, setInpQuantity] = useState('')
+
+  const createCargosFromInput = () => {
+    if (inpQuantity < 0) {
+      return alert('Введеные колличество грузов не может быть отрицательным')
+    }
+
+    // if (inpQuantity === '') {
+    //   createCargos()
+    //   return
+    // }
+    const manyCargos = () => {
+      for (let i = 0; i < inpQuantity; i++) {
+        createCargos()
+        console.log(inpQuantity + 'qqqqq')
+      }
+    }
+    return manyCargos()
+  }
 
   const createCargos = () => {
+    if (!inpWidth || !inpHeight || !inpDepth) {
+      return alert('Необходимо ввести размеры груза')
+    }
+    if (inpWidth <= 0 || inpHeight <= 0 || inpDepth <= 0) {
+      return alert('Введеные размеры груза должны быть больше нуля')
+    }
+    if (inpXpos < 0 || inpYpos < 0 || inpZpos < 0) {
+      return alert('Введеные координаты не могут быть отрицательными')
+    }
     const id = crypto.randomUUID()
     const X_width = inpWidth
     const Y_height = inpHeight
-    const Z_length = inpLenght
-    const X_pos = inpXpos
-    const Y_pos = inpYpos
-    const Z_pos = inpZpos
+    const Z_length = inpDepth
+
+    const X_pos = inpXpos == '' ? 0 : inpXpos
+    const Y_pos = inpYpos == '' ? 0 : inpYpos
+    const Z_pos = inpZpos == '' ? 0 : inpZpos
 
     const cargo = {
       id: id,
@@ -28,6 +58,7 @@ function FirstRowCreate({ cargos, setCargos }) {
     }
     const UpdatedCargos = [cargo, ...cargos]
     setCargos(UpdatedCargos)
+    return UpdatedCargos
   }
   return (
     <tr>
@@ -36,7 +67,7 @@ function FirstRowCreate({ cargos, setCargos }) {
         <input
           name="input_width"
           type="number"
-          placeholder="введите ширирину"
+          placeholder="введите..."
           value={inpWidth}
           onChange={(event) => setInpWidth(event.target.value)}
         ></input>
@@ -45,7 +76,7 @@ function FirstRowCreate({ cargos, setCargos }) {
         <input
           name="input_height"
           type="number"
-          placeholder="введите высоту"
+          placeholder="введите..."
           value={inpHeight}
           onChange={(event) => setInpHeight(event.target.value)}
         ></input>
@@ -54,16 +85,16 @@ function FirstRowCreate({ cargos, setCargos }) {
         <input
           name="input_length"
           type="number"
-          placeholder="введите длинну"
-          value={inpLenght}
-          onChange={(event) => setInpLenght(event.target.value)}
+          placeholder="введите..."
+          value={inpDepth}
+          onChange={(event) => setInpDepth(event.target.value)}
         ></input>
       </td>
       <td>
         <input
           name="input_pos_x"
           type="number"
-          placeholder="введите расположение X"
+          placeholder="введите..."
           value={inpXpos}
           onChange={(event) => setInpXpos(event.target.value)}
         ></input>
@@ -72,7 +103,7 @@ function FirstRowCreate({ cargos, setCargos }) {
         <input
           name="input_pos_x"
           type="number"
-          placeholder="введите расположение Y"
+          placeholder="введите..."
           value={inpYpos}
           onChange={(event) => setInpYpos(event.target.value)}
         ></input>
@@ -81,13 +112,22 @@ function FirstRowCreate({ cargos, setCargos }) {
         <input
           name="input_pos_z"
           type="number"
-          placeholder="введите расположение Z"
+          placeholder="введите..."
           value={inpZpos}
           onChange={(event) => setInpZpos(event.target.value)}
         ></input>
       </td>
       <td>
-        <button onClick={createCargos}>Создать</button>
+        <input
+          name="input_quantity"
+          type="number"
+          placeholder="введите..."
+          value={inpQuantity}
+          onChange={(event) => setInpQuantity(event.target.value)}
+        ></input>
+        <button className="create1" onClick={createCargosFromInput}>
+          Создать
+        </button>
       </td>
     </tr>
   )
