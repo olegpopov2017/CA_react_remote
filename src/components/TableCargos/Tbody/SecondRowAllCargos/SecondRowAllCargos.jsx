@@ -2,20 +2,18 @@ import './SecondRowAllCargos.css'
 
 function SecondRowAllCargos({ cargos, setCargos }) {
   const deleteCargo = (uuid) => {
-    const updatedCargos = cargos.filter((x) => x.id !== uuid)
+    const updatedCargos = cargos.filter((x) => x.uuid !== uuid)
     setCargos(updatedCargos)
   }
   return cargos.map((item) => (
     <tr key={item.uuid}>
       <td
         style={{
-          // color: '',
           fontSize: '10px',
-          // fontWeight: 'bold',
           fontFamily: 'Arial, sans-serif',
         }}
       >
-        {item.id}
+        {item.uuid}
       </td>
       <td>{item.Xwidth}</td>
       <td>{item.Yheight}</td>
@@ -24,7 +22,7 @@ function SecondRowAllCargos({ cargos, setCargos }) {
       <td>{item.Yposition}</td>
       <td>{item.Zposition}</td>
       <td>
-        <button onClick={() => deleteCargo(item.id)}>Удалить</button>
+        <button onClick={() => deleteCargo(item.uuid)}>Удалить</button>
       </td>
     </tr>
   ))

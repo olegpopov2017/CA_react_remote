@@ -15,7 +15,7 @@ function Thead({ cargos, setCargos }) {
         <th>X position</th>
         <th>Y position</th>
         <th>Z position</th>
-        <th>
+        <th className="finishTH">
           <button onClick={() => deleteAllCargos()}>Удалить все</button>
         </th>
       </tr>

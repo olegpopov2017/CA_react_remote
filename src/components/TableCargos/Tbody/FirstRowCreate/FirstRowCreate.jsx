@@ -11,21 +11,28 @@ function FirstRowCreate({ cargos, setCargos }) {
   const [inpQuantity, setInpQuantity] = useState('')
 
   const createCargosFromInput = () => {
-    if (inpQuantity < 0) {
-      return alert('Введеные колличество грузов не может быть отрицательным')
+    let newCargos = []
+
+    if (inpQuantity <= 0) {
+      return alert(
+        'Введеные колличество грузов не может быть отрицательным или равным нулю'
+      )
     }
 
-    // if (inpQuantity === '') {
-    //   createCargos()
-    //   return
-    // }
-    const manyCargos = () => {
-      for (let i = 0; i < inpQuantity; i++) {
-        createCargos()
-        console.log(inpQuantity + 'qqqqq')
-      }
+    if (inpQuantity == '') {
+      console.log(inpQuantity)
+      newCargos.push(createCargos())
+      let oneCargo = [...newCargos, ...cargos]
+      setCargos(oneCargo)
+      return
     }
-    return manyCargos()
+
+    for (let i = 0; i < inpQuantity; i++) {
+      newCargos.push(createCargos())
+    }
+    let manyCargos = [...newCargos, ...cargos]
+    setCargos(manyCargos)
+    return
   }
 
   const createCargos = () => {
@@ -38,7 +45,7 @@ function FirstRowCreate({ cargos, setCargos }) {
     if (inpXpos < 0 || inpYpos < 0 || inpZpos < 0) {
       return alert('Введеные координаты не могут быть отрицательными')
     }
-    const id = crypto.randomUUID()
+    const uuidGen = crypto.randomUUID()
     const X_width = inpWidth
     const Y_height = inpHeight
     const Z_length = inpDepth
@@ -48,7 +55,7 @@ function FirstRowCreate({ cargos, setCargos }) {
     const Z_pos = inpZpos == '' ? 0 : inpZpos
 
     const cargo = {
-      id: id,
+      uuid: uuidGen,
       Xwidth: X_width,
       Yheight: Y_height,
       Zlength: Z_length,
@@ -56,10 +63,9 @@ function FirstRowCreate({ cargos, setCargos }) {
       Yposition: Y_pos,
       Zposition: Z_pos,
     }
-    const UpdatedCargos = [cargo, ...cargos]
-    setCargos(UpdatedCargos)
-    return UpdatedCargos
+    return cargo
   }
+
   return (
     <tr>
       <td></td>
@@ -117,11 +123,12 @@ function FirstRowCreate({ cargos, setCargos }) {
           onChange={(event) => setInpZpos(event.target.value)}
         ></input>
       </td>
-      <td>
+      <td className="finishTd">
         <input
+          className="inputQuantity"
           name="input_quantity"
           type="number"
-          placeholder="введите..."
+          placeholder="колличество..."
           value={inpQuantity}
           onChange={(event) => setInpQuantity(event.target.value)}
         ></input>

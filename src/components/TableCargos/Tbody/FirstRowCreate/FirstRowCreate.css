@@ -4,16 +4,15 @@ td {
   border-bottom: 1px solid #dee2e6;
   width: 100px;
   text-align: center;
-  /* height: 40px; */
 }
 input {
-  /* Общие стили для всех строк таблицы */
-  /* background-color: #f8f9fa; */
-  /* border-bottom: 1px solid #dee2e6; */
   width: 90%;
-
-  /* height: 40px; */
 }
 .create1 {
   background-color: #46f062;
+}
+.inputQuantity {
+  width: 50%;
+}
+.finishTd {
 }

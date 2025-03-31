@@ -7,8 +7,8 @@ import {} from './helpers'
 
 function TableCargos({ cargos, setCargos }) {
   return (
-    <div class="table-cargos-container">
-      <table class="table-cargos">
+    <div className="table-cargos-container">
+      <table className="table-cargos">
         <Thead cargos={cargos} setCargos={setCargos} />
         <Tbody cargos={cargos} setCargos={setCargos} />
       </table>
