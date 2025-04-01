@@ -8,11 +8,35 @@ td {
 input {
   width: 90%;
 }
-.create1 {
+/* .create1 {
   background-color: #46f062;
 }
 .inputQuantity {
   width: 50%;
-}
+} */
 .finishTd {
+}
+
+finishTd {
+  padding: 0; /* Убираем стандартные отступы ячейки */
+}
+
+.finish-input-button-group {
+  display: flex;
+  /* align-items: center; Вертикальное выравнивание */
+  gap: 8px; /* Расстояние между элементами */
+  padding: 4px 8px; /* Внутренние отступы */
+}
+
+.finish-input-button-group input {
+  flex: 1; /*Занимает всё доступное пространство*/
+  min-width: 0; /* Фикс переполнения */
+  width: 50%;
+  /* padding: 6px; */
+}
+
+.finish-input-button-group button {
+  white-space: nowrap; /* Текст кнопки не переносится */
+  /* padding: 6px 12px; */
+  background-color: #46f062;
 }

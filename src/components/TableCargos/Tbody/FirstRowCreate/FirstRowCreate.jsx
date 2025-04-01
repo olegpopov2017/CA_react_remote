@@ -124,17 +124,19 @@ function FirstRowCreate({ cargos, setCargos }) {
         ></input>
       </td>
       <td className="finishTd">
-        <input
-          className="inputQuantity"
-          name="input_quantity"
-          type="number"
-          placeholder="колличество..."
-          value={inpQuantity}
-          onChange={(event) => setInpQuantity(event.target.value)}
-        ></input>
-        <button className="create1" onClick={createCargosFromInput}>
-          Создать
-        </button>
+        <div className="finish-input-button-group">
+          <input
+            className="inputQuantity"
+            name="input_quantity"
+            type="number"
+            placeholder="колличество..."
+            value={inpQuantity}
+            onChange={(event) => setInpQuantity(event.target.value)}
+          ></input>
+          <button className="create1" onClick={createCargosFromInput}>
+            Создать
+          </button>
+        </div>
       </td>
     </tr>
   )
