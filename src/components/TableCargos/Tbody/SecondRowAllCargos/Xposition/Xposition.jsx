@@ -1,19 +1,23 @@
 import React, { useState, useRef } from 'react'
 
-function Xposition({ uuid, Xposition: initialXposition, cargos, setCargos }) {
-  const [editing, setEditing] = useState({ id: null, field: null })
+function Xposition({ uuid, initialXposition, cargos, setCargos }) {
+  const [editing, setEditing] = useState({ id: null })
   const inputRef = useRef()
 
-  const startEdit = (id, field) => {
-    setEditing({ id, field })
+  const startEdit = (id) => {
+    setEditing({ id })
     setTimeout(() => inputRef.current?.focus(), 0)
   }
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       const newValue = e.target.value
+      if (isNaN(Number(newValue))) {
+        alert('введеннное значение должно быть числовым')
+        return
+      }
       if (newValue < 0) {
-        alert('введенные размеры не могут быть меньше 0')
+        alert('введенное значение не может быть меньше 0')
         return
       }
       setCargos((prevCargos) =>
@@ -31,7 +35,7 @@ function Xposition({ uuid, Xposition: initialXposition, cargos, setCargos }) {
   }
 
   return (
-    <td onClick={() => startEdit(uuid, 'Xpositionn')}>
+    <td onClick={() => startEdit(uuid)}>
       {editing.id === uuid ? (
         <input
           ref={inputRef}

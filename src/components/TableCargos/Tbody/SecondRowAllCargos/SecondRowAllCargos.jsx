@@ -13,48 +13,48 @@ function SecondRowAllCargos({ cargos, setCargos }) {
     const updatedCargos = cargos.filter((x) => x.uuid !== uuid)
     setCargos(updatedCargos)
   }
-  return cargos.map((item) => (
-    <tr key={item.uuid}>
-      <UUID uuid={item.uuid} cargos={cargos} setCargos={setCargos} />
+  return cargos.map((cargo) => (
+    <tr key={cargo.uuid}>
+      <UUID uuid={cargo.uuid} cargos={cargos} setCargos={setCargos} />
 
       <Xwidth
-        uuid={item.uuid}
-        Xwidth={item.Xwidth}
+        uuid={cargo.uuid}
+        initialXwidth={cargo.Xwidth}
         cargos={cargos}
         setCargos={setCargos}
       />
       <Yheight
-        uuid={item.uuid}
-        Yheight={item.Yheight}
+        uuid={cargo.uuid}
+        initialYheight={cargo.Yheight}
         cargos={cargos}
         setCargos={setCargos}
       />
       <Zdepth
-        uuid={item.uuid}
-        Zdepth={item.Zdepth}
+        uuid={cargo.uuid}
+        initialZdepth={cargo.Zdepth}
         cargos={cargos}
         setCargos={setCargos}
       />
       <Xposition
-        uuid={item.uuid}
-        Xposition={item.Xposition}
+        uuid={cargo.uuid}
+        initialXposition={cargo.Xposition}
         cargos={cargos}
         setCargos={setCargos}
       />
       <Yposition
-        uuid={item.uuid}
-        Yposition={item.Yposition}
+        uuid={cargo.uuid}
+        initialYposition={cargo.Yposition}
         cargos={cargos}
         setCargos={setCargos}
       />
       <Zposition
-        uuid={item.uuid}
-        Zposition={item.Zposition}
+        uuid={cargo.uuid}
+        initialZposition={cargo.Zposition}
         cargos={cargos}
         setCargos={setCargos}
       />
       <td>
-        <button onClick={() => deleteCargo(item.uuid)}>Удалить</button>
+        <button onClick={() => deleteCargo(cargo.uuid)}>Удалить</button>
       </td>
     </tr>
   ))
