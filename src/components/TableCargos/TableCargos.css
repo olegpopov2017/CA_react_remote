@@ -1,0 +1,27 @@
+.table-cargos-container {
+  width: 1050px; /* Фиксированная ширина контейнера */
+  height: 300px; /* Фиксированная высота */
+  margin: '20px';
+
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  overflow-y: scroll; /* Всегда показывать полосу (даже если контент помещается) */
+  width: calc(
+    1350px + 17px
+  ); /* Компенсируем стандартную ширину скролла (обычно 17px) */
+}
+
+.table-cargos {
+  table-layout: fixed; /* Важно! */
+  width: 100%; /* Растягивается на всю ширину контейнера */
+  border-collapse: collapse; /* Убирает двойные границы */
+  border: 1px solid #000;
+}
+
+.table-cargos th,
+.table-cargos td {
+  border: 1px solid #443f3f; /* Границы для ячеек */
+}
