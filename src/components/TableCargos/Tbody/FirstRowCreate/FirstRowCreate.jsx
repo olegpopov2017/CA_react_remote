@@ -48,7 +48,7 @@ function FirstRowCreate({ cargos, setCargos }) {
     const uuidGen = crypto.randomUUID()
     const X_width = inpWidth
     const Y_height = inpHeight
-    const Z_length = inpDepth
+    const Z_depth = inpDepth
 
     const X_pos = inpXpos == '' ? 0 : inpXpos
     const Y_pos = inpYpos == '' ? 0 : inpYpos
@@ -58,7 +58,7 @@ function FirstRowCreate({ cargos, setCargos }) {
       uuid: uuidGen,
       Xwidth: X_width,
       Yheight: Y_height,
-      Zlength: Z_length,
+      Zdepth: Z_depth,
       Xposition: X_pos,
       Yposition: Y_pos,
       Zposition: Z_pos,

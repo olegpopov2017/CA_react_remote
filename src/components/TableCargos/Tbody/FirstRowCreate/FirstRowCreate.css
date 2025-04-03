@@ -23,6 +23,7 @@ finishTd {
 
 .finish-input-button-group {
   display: flex;
+  justify-content: space-between;
   /* align-items: center; Вертикальное выравнивание */
   gap: 8px; /* Расстояние между элементами */
   padding: 4px 8px; /* Внутренние отступы */
