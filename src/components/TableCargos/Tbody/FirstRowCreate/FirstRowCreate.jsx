@@ -13,13 +13,23 @@ function FirstRowCreate({ cargos, setCargos }) {
   const createCargosFromInput = () => {
     let newCargos = []
 
-    if (inpQuantity <= 0) {
+    if (!inpWidth || !inpHeight || !inpDepth) {
+      return alert('Необходимо ввести размеры груза')
+    }
+    if (inpWidth <= 0 || inpHeight <= 0 || inpDepth <= 0) {
+      return alert('Введеные размеры груза должны быть больше нуля')
+    }
+    if (inpXpos < 0 || inpYpos < 0 || inpZpos < 0) {
+      return alert('Введеные координаты не могут быть отрицательными')
+    }
+
+    if (inpQuantity < 0) {
       return alert(
-        'Введеные колличество грузов не может быть отрицательным или равным нулю'
+        'Введеное колличество грузов не может быть отрицательным или равным нулю'
       )
     }
 
-    if (inpQuantity == '') {
+    if (inpQuantity === '') {
       console.log(inpQuantity)
       newCargos.push(createCargos())
       let oneCargo = [...newCargos, ...cargos]
@@ -36,15 +46,6 @@ function FirstRowCreate({ cargos, setCargos }) {
   }
 
   const createCargos = () => {
-    if (!inpWidth || !inpHeight || !inpDepth) {
-      return alert('Необходимо ввести размеры груза')
-    }
-    if (inpWidth <= 0 || inpHeight <= 0 || inpDepth <= 0) {
-      return alert('Введеные размеры груза должны быть больше нуля')
-    }
-    if (inpXpos < 0 || inpYpos < 0 || inpZpos < 0) {
-      return alert('Введеные координаты не могут быть отрицательными')
-    }
     const uuidGen = crypto.randomUUID()
     const X_width = inpWidth
     const Y_height = inpHeight
@@ -129,6 +130,7 @@ function FirstRowCreate({ cargos, setCargos }) {
             className="inputQuantity"
             name="input_quantity"
             type="number"
+            defaultValue={1}
             placeholder="колличество..."
             value={inpQuantity}
             onChange={(event) => setInpQuantity(event.target.value)}

@@ -13,12 +13,10 @@ function Xposition({ uuid, initialXposition, cargos, setCargos }) {
     if (e.key === 'Enter') {
       const newValue = e.target.value
       if (isNaN(Number(newValue))) {
-        alert('введеннное значение должно быть числовым')
-        return
+        return alert('введеннное значение должно быть числовым')
       }
       if (newValue < 0) {
-        alert('введенное значение не может быть меньше 0')
-        return
+        return alert('введенное значение не может быть меньше 0')
       }
       setCargos((prevCargos) =>
         prevCargos.map((cargo) =>
