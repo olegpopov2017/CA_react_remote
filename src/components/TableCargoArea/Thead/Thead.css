@@ -1,17 +1,16 @@
 .trCargoAreaTable {
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  /* padding: 8px; */
-  border: 1px solid #1d1b1b; /* Добавляем сплошную серую границу */
-  border-radius: 4px; /* Закругляем углы (опционально) */
+  justify-content: center;
+  align-items: center;
 }
 
-.thCargoAreaRow {
+.trCargoAreaTable th {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 0;
-  width: 90%;
+  justify-content: center;
+  width: 100%;
+  border-collapse: collapse; /* Убирает двойные границы */
+  border: 1px solid #afa4a4; /* Добавляем сплошную серую границу */
 }

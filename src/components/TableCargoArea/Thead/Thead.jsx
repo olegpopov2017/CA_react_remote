@@ -11,30 +11,30 @@ function Thead({ cargoArea, setCargoArea }) {
       {/* Основной контейнер с вертикальным расположением */}
       <tr className="trCargoAreaTable">
         {/* Каждая ячейка как отдельная строка */}
-        <th className="thCargoAreaRow">
-          <span style={{ width: '100px' }}>UUID</span>
-          <input type="text" style={{ width: '100px' }} />
+        <th className="thCargoAreaUUID">
+          <span style={{ width: '50%' }}>UUID</span>
+          <input type="text" style={{ width: '35%', height: '50' }} />
         </th>
 
-        <th className="thCargoAreaRow">
-          <span style={{ width: '100px' }}>X width</span>
-          <input type="text" style={{ width: '100px' }} />
+        <th className="thCargoAreaXwidth">
+          <span style={{ width: '50%' }}>X width</span>
+          <input type="text" style={{ width: '35%' }} />
         </th>
 
-        <th className="thCargoAreaRow">
-          <span style={{ width: '100px' }}>Y height</span>
-          <input type="text" style={{ width: '100px' }} />
+        <th className="thCargoAreaYheight">
+          <span style={{ width: '50%' }}>Y height</span>
+          <input type="text" style={{ width: '35%' }} />
         </th>
 
-        <th className="thCargoAreaRow">
-          <span style={{ width: '100px' }}>Z depth</span>
-          <input type="text" style={{ width: '100px' }} />
+        <th className="thCargoAreaZdepth">
+          <span style={{ width: '50%' }}>Z depth</span>
+          <input type="text" style={{ width: '35%' }} />
         </th>
 
-        <th className="finishTH" style={{ padding: '8px 0', width: '100%' }}>
+        <th className="buttonCreate" style={{ width: '100%' }}>
           <button
             onClick={() => createUpdateCargoArea()}
-            style={{ width: '150px' }}
+            style={{ width: '80%' }}
           >
             Создать/Изменить
           </button>
