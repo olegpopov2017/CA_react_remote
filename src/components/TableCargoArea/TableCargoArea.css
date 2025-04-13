@@ -1,11 +1,10 @@
 .table-cargoArea-container {
-  width: 250px;
-  height: 300px;
-  /* margin: '20px'; */
+  /* width: 400px; Фиксированная ширина контейнера */
+  /* height: 300px;  */
+  margin: '20px';
 
   position: fixed;
-  bottom: 20px;
-
+  bottom: 125px;
   /* left: 50%; */
   /* transform: translateX(-50%); */
 

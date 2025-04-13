@@ -1,6 +1,7 @@
 .table-cargos-container {
   width: 1050px; /* Фиксированная ширина контейнера */
   height: 300px; /* Фиксированная высота */
+  margin: '20px';
 
   position: fixed;
   bottom: 20px;
