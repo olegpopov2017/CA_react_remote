@@ -1,14 +1,15 @@
 import { useState } from 'react'
 
 import TableCargos from './TableCargos/TableCargos.jsx'
-import EditebleTable from './TableCargos/DSEditibleTable.jsx'
+import TableCargoArea from './TableCargoArea/TableCargoArea.jsx'
 
 function MainCA() {
   const [cargos, setCargos] = useState([])
+  const [cargoArea, setCargoArea] = useState('')
   return (
     <>
       <TableCargos cargos={cargos} setCargos={setCargos} />
-      {/* <EditebleTable /> */}
+      <TableCargoArea cargoArea={cargoArea} setCargoArea={setCargoArea} />
     </>
   )
 }

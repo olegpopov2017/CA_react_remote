@@ -130,7 +130,6 @@ function FirstRowCreate({ cargos, setCargos }) {
             className="inputQuantity"
             name="input_quantity"
             type="number"
-            defaultValue={1}
             placeholder="колличество..."
             value={inpQuantity}
             onChange={(event) => setInpQuantity(event.target.value)}
