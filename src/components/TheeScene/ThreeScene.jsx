@@ -1,3 +1,4 @@
+import './ThreeScene.css'
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
@@ -15,13 +16,12 @@ const ThreeScene = () => {
     )
 
     const renderer = new THREE.WebGLRenderer()
-    renderer.setSize(window.innerWidth, window.innerHeight) // Устанавливаем размеры канваса
+    renderer.setSize(600, 300) // Устанавливаем размеры канваса
 
-    // Очистка контейнера перед добавлением нового canvas
-    // if (mountRef.current) {
-    mountRef.current.innerHTML = '' // Удаляем старый canvas, если он есть
-    mountRef.current.appendChild(renderer.domElement) // Добавляем новый canvas
-    // }
+    // Добавляем canvas только один раз
+    if (!mountRef.current.hasChildNodes()) {
+      mountRef.current.appendChild(renderer.domElement) // Добавляем новый canvas
+    }
 
     // Добавляем куб
     const geometry = new THREE.BoxGeometry()
@@ -46,11 +46,17 @@ const ThreeScene = () => {
 
     // Очистка ресурсов при размонтировании компонента
     return () => {
-      renderer.dispose()
+      // Останавливаем анимацию
+      renderer.dispose() // Освобождаем ресурсы рендерера
+
+      // Удаляем canvas элемент
+      if (mountRef.current) {
+        mountRef.current.innerHTML = '' // Удаляем старый canvas
+      }
     }
   }, []) // Пустой массив зависимостей — эффект выполнится только один раз
 
-  return <div ref={mountRef} /> // Контейнер для сцены
+  return <div className="ThreeScene-container" ref={mountRef} /> // Контейнер для сцены
 }
 
 export default ThreeScene
