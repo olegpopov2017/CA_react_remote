@@ -9,7 +9,12 @@ function MainCA() {
   const [cargoArea, setCargoArea] = useState('')
   return (
     <>
-      <ThreeScene />
+      <ThreeScene
+        cargos={cargos}
+        setCargos={setCargos}
+        cargoArea={cargoArea}
+        setCargoArea={setCargoArea}
+      />
       <TableCargos cargos={cargos} setCargos={setCargos} />
       <TableCargoArea cargoArea={cargoArea} setCargoArea={setCargoArea} />
     </>

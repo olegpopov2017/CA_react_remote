@@ -1,9 +1,9 @@
 import './ThreeScene.css'
-import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import React, { useEffect, useRef } from 'react'
 import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls'
 
-const ThreeScene = () => {
+const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
   const mountRef = useRef(null) // Ссылка на контейнер для сцены
 
   useEffect(() => {
@@ -44,9 +44,16 @@ const ThreeScene = () => {
     }
 
     // Добавляем куб
-    const geometry = new THREE.BoxGeometry()
+    let geometry = new THREE.BoxGeometry()
+
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
     const cube = new THREE.Mesh(geometry, material)
+
+    if (cargoArea) {
+      cube.scale.x = Number(cargoArea[0].Xwidth)
+      cube.scale.y = Number(cargoArea[0].Yheight)
+      cube.scale.z = Number(cargoArea[0].Zdepth)
+    }
     scene.add(cube)
 
     // Устанавливаем камеру
@@ -71,7 +78,7 @@ const ThreeScene = () => {
         mountRef.current.innerHTML = '' // Удаляем старый canvas
       }
     }
-  }, []) // Пустой массив зависимостей — эффект выполнится только один раз
+  }, [cargoArea]) // Пустой массив зависимостей — эффект выполнится только один раз
 
   return <div className="ThreeScene-container" ref={mountRef} /> // Контейнер для сцены
 }

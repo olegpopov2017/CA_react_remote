@@ -18,7 +18,7 @@ function Thead({ cargoArea, setCargoArea }) {
     newCargoArea.push(createCargoArea())
 
     setCargoArea(newCargoArea)
-    console.log(cargoArea)
+    // console.log(cargoArea)
     return
   }
 
