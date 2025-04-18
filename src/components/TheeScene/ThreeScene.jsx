@@ -1,17 +1,17 @@
 import './ThreeScene.css'
+import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls'
+import React, { useEffect, useRef } from 'react'
+import * as THREE from 'three'
 import {
   renderer,
   scene,
   camera,
-  // controls,
+  controls,
   cargo_group,
   cargo_area_group,
   group_of_cargo_area_floor,
-} from './ThreeFunctions/sceneInitialization2'
-
-import * as THREE from 'three'
-import React, { useEffect, useRef } from 'react'
-import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls'
+} from './ThreeFunctionsJS/sceneInitialization'
+import { cargo_area_adding } from './ThreeFunctionsJS/cargoAreaFunctions'
 
 const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
   const mountRef = useRef(null) // Ссылка на контейнер для сцены
@@ -20,11 +20,11 @@ const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
     if (!mountRef.current.hasChildNodes()) {
       mountRef.current.appendChild(renderer.domElement) // Добавляем новый canvas
     }
-    // Rotation camera with orbit controls.
-    let controls = new OrbitControls(camera, renderer.domElement)
-    controls.enableDamping = true
-    controls.zoomSpeed = 6
 
+    //Create cargo area
+    if (cargoArea) {
+      cargo_area_adding(cargoArea)
+    }
     //////////// Raycaster mouse moving cargos and Check the collisions of draggable cargo and other cargos. If collision is detected,cargo come back to start position.
 
     let raycaster = new THREE.Raycaster() // Create once for dragging cargos

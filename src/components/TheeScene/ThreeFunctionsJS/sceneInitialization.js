@@ -15,13 +15,24 @@ export let camera = new THREE.PerspectiveCamera(
 camera.position.x = 7
 camera.position.z = 7
 camera.position.y = 7
-
+// camera.lookAt(1, 2, 3)
 const light = new THREE.AmbientLight(0xffffbb, 0x080820, 1)
 light.position.set(30, 30, 30).normalize()
 scene.add(light)
 
 export let renderer = new THREE.WebGLRenderer()
 renderer.setSize(600, 300)
+
+// Rotation camera with orbit controls.
+export let controls = new OrbitControls(camera, renderer.domElement)
+
+controls.enableDamping = true
+controls.dampingFactor = 0.1 // плавность при вращении
+controls.zoomSpeed = 2 // скорость приближения/отдаления
+controls.rotateSpeed = 0.5 // скорость вращения
+controls.panSpeed = 1 // скорость панорамирования (если включено)
+controls.enableZoom = true
+controls.enablePan = true
 
 //Adding groups for objects and another for pallets.
 export let cargo_area_group = new THREE.Group()
