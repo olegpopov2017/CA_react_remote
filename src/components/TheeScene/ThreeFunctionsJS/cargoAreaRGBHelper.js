@@ -1,14 +1,15 @@
 import * as THREE from 'three'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
-import { group_of_cargo_area_attribute } from './sceneInitialization.js'
+// import { group_of_cargo_area_attribute } from './sceneInitialization.js'
 
-create_RGB_axes_helper_with_symbols(3, 3, 3)
+// create_RGB_axes_helper_with_symbols(3, 3, 3, group_of_cargo_area_attribute)
 //Adding text X Y Z on axes
 export function create_RGB_axes_helper_with_symbols(
   width_x,
   height_y,
-  depth_z
+  depth_z,
+  group_of_cargo_area_attribute
 ) {
   let width = Number(width_x)
   let height = Number(height_y)

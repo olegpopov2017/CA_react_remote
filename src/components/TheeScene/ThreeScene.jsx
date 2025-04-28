@@ -1,153 +1,103 @@
 import './ThreeScene.css'
-import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls'
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import {
-  renderer,
-  scene,
-  camera,
-  controls,
-  cargo_group,
-  cargo_area_group,
-  group_of_cargo_area_floor,
+  startTime,
+  endTime,
+  readMouseMove,
+  createDraggableCargoPlaceholder,
+  isPlaceholder,
+} from './ThreeFunctionsJS/dragObjectsFunctions'
+import {
+  createSceneAndLight,
+  createAndAddingGroups,
+  createCamera,
+  createRenderer,
+  createControls,
+  clearScene,
+  // colors,
 } from './ThreeFunctionsJS/sceneInitialization'
 import { cargo_area_adding } from './ThreeFunctionsJS/cargoAreaFunctions'
+import { createCargos } from './ThreeFunctionsJS/cargoFuctions'
+
+// export let draggable_cargo = createDraggableCargoPlaceholder()
+// export let backup_draggable_cargo = createDraggableCargoPlaceholder()
 
 const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
   const mountRef = useRef(null) // Ссылка на контейнер для сцены
+  let draggable_cargo = useRef('') //ref on count for drag cargo.
+  let backup_draggable_cargo = useRef('') //ref on count for drag cargo.
 
   useEffect(() => {
-    if (!mountRef.current.hasChildNodes()) {
-      mountRef.current.appendChild(renderer.domElement) // Добавляем новый canvas
+    //Scene initialization
+
+    let scene = createSceneAndLight()
+    let camera = createCamera()
+    let renderer = createRenderer()
+    let controls = createControls(camera, renderer)
+    //Adding groups to scene
+    let [
+      cargo_area_group,
+      cargo_group,
+      group_of_cargo_area_floor,
+      group_of_cargo_area_attribute,
+    ] = createAndAddingGroups()
+    scene.add(cargo_area_group)
+    scene.add(cargo_group)
+    scene.add(group_of_cargo_area_floor)
+    scene.add(group_of_cargo_area_attribute)
+    if (mountRef.current) {
+      mountRef.current.innerHTML = ''
+      mountRef.current.appendChild(renderer.domElement)
     }
 
-    //Create cargo area
-    if (cargoArea) {
-      cargo_area_adding(cargoArea)
-    }
+    // createAndAddingGroups(scene)
+
     //////////// Raycaster mouse moving cargos and Check the collisions of draggable cargo and other cargos. If collision is detected,cargo come back to start position.
 
     let raycaster = new THREE.Raycaster() // Create once for dragging cargos
     let moveMouse = new THREE.Vector2() // Create once for dragging cargo according mouse position
     let clickMouse = new THREE.Vector2() // create once
-    let draggable_cargo = null //Variable that containe draggable cargo
-    let backup_draggable_cargo = null //Use if collisions is detected and after that,cargo return in start position(position before dragging).
+    draggable_cargo.current = createDraggableCargoPlaceholder()
+    backup_draggable_cargo.current = createDraggableCargoPlaceholder()
     let canvasBounds = renderer.getContext().canvas.getBoundingClientRect() //Using for only checking mouse coordinstes in canvas.
 
     //Find delay bettwen mousedown and mouse up. If delay < 200 mlsec, calling function "catch draggable".
-    let start_time
-    let end_time
-    let time_diff
+    let start_time = new Date()
+    let end_time = new Date()
+    let time_diff = new Date()
 
-    window.addEventListener('mousedown', (event) => {
-      start_time = null
+    let onMouseMove = (event) => readMouseMove(event, renderer, moveMouse)
+    let onMouseDown = (event) => (start_time = new Date())
 
-      start_time = new Date()
-    })
+    let onMouseUp = (event) =>
+      endTime(
+        event,
+        end_time,
+        time_diff,
+        start_time,
+        controls,
+        cargo_group,
+        clickMouse,
+        canvasBounds,
+        raycaster,
+        camera,
+        scene,
+        draggable_cargo,
+        backup_draggable_cargo
+      )
 
-    window.addEventListener('mouseup', (event) => {
-      end_time = null
-      time_diff = null
-
-      end_time = new Date()
-      time_diff = end_time - start_time
-      if (time_diff < 200) {
-        catch_draggable()
-      }
-    })
-
-    //Realtime catching object after mouse clicking on canvas and save values in variable "draggable".Use in raycaster dragging objects
-    function catch_draggable() {
-      if (draggable_cargo) {
-        //If we will dropping draggable cargo.
-
-        controls.enabled = false
-
-        check_collision_of_draggable_cargo_and_other_cargos()
-
-        draggable_cargo.material.opacity = 1
-        draggable_cargo.material.transparent = false
-        draggable_cargo.children[0].material.color.set('black')
-
-        draggable_cargo.removeFromParent() //Need for jumping cargos after mouse moving  and intersect mouse with other object
-        cargo_group.add(draggable_cargo) //Need for jumping cargos after mouse moving  and intersect mouse with other object
-
-        draggable_cargo = null
-        backup_draggable_cargo = null
-
-        if (!draggable_cargo) {
-          //If we will picking cargo for dragging
-          controls.enabled = true
-          return
-        }
-      }
-
-      //Founding ClickMouse position and set this parameters to variable "raycaster".Use in raycaster dragging object
-      clickMouse.x =
-        ((event.clientX - canvasBounds.left) /
-          (canvasBounds.right - canvasBounds.left)) *
-          2 -
-        1
-      clickMouse.y =
-        -(
-          (event.clientY - canvasBounds.top) /
-          (canvasBounds.bottom - canvasBounds.top)
-        ) *
-          2 +
-        1
-
-      //Create array "found" from intersection raycast and cargos. Set value from first element of array to variable "draggable".Replace draggable from "cargo_group" to scene.
-      raycaster.setFromCamera(clickMouse, camera)
-
-      if (
-        event.clientX > canvasBounds.left &&
-        event.clientX < canvasBounds.right &&
-        event.clientY < canvasBounds.bottom &&
-        event.clientY > canvasBounds.top
-      ) {
-        //Condition for pick objects when mouse clc only on canvas.
-        const found = raycaster.intersectObjects(cargo_group.children, false)
-
-        if (found.length > 0 && found[0].object.userData.isFloor == false) {
-          draggable_cargo = found[0].object
-          backup_draggable_cargo = found[0].object.clone()
-
-          draggable_cargo.userData.intersecteble = false
-
-          draggable_cargo.removeFromParent() //Need for jumping cargos after mouse moving  and intersect mouse with other object
-
-          draggable_cargo.material.opacity = 0.2
-          draggable_cargo.material.transparent = true
-          draggable_cargo.children[0].material.color.set('GREEN')
-
-          scene.add(draggable_cargo) //Need for jumping cargos after mouse moving  and intersect mouse with other object
-        }
-      }
-    }
-
-    //Realtime record mouse position to variable "moveMouse".Use in raycaster dragging objects.
-    window.addEventListener('mousemove', (event) => {
-      let canvasBounds2 = renderer.getContext().canvas.getBoundingClientRect()
-      moveMouse.x =
-        ((event.clientX - canvasBounds2.left) /
-          (canvasBounds2.right - canvasBounds2.left)) *
-          2 -
-        1
-      moveMouse.y =
-        -(
-          (event.clientY - canvasBounds2.top) /
-          (canvasBounds2.bottom - canvasBounds2.top)
-        ) *
-          2 +
-        1
-    })
+    window.addEventListener('mousemove', onMouseMove)
+    window.addEventListener('mousedown', onMouseDown)
+    window.addEventListener('mouseup', onMouseUp)
 
     //Create function drag object. If mouse catch draggable cargo,create array of floors for draggable,which consist of all other cargos and cargo area floor.
     //Draggable cargo moving only upperfaces of this array objects (face index = 4 or 5)
     function dragObject() {
       raycaster.setFromCamera(moveMouse, camera)
-
-      if (draggable_cargo != null) {
+      // console.log('3', draggable_cargo)
+      if (!isPlaceholder(draggable_cargo.current)) {
+        // console.log('qqqqq', isPlaceholder(draggable_cargo))
         let array_of_floors_for_draggable = [
           ...group_of_cargo_area_floor.children,
           ...cargo_group.children,
@@ -161,103 +111,116 @@ const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
         if (cargos_on_ray.length > 0) {
           let found = cargos_on_ray[0]
           // testfunc()
-          updateTable(draggable_cargo)
+          // updateTable(draggable_cargo)
+          // console.log(found)
           //Condition for cargo moving only upper faces of cargo (upper faces consist of two triangles with numbers 4 and 5).
           if (found.faceIndex == 4 || found.faceIndex == 5) {
             if (
               found.point.x <=
-              Number(draggable_cargo.geometry.parameters.width) / 2
+              Number(draggable_cargo.current.geometry.parameters.width) / 2
             ) {
               //MIN X axis limitation draggable object according ti cargo area
-              draggable_cargo.position.x =
-                Number(draggable_cargo.geometry.parameters.width) / 2
+              draggable_cargo.current.position.x =
+                Number(draggable_cargo.current.geometry.parameters.width) / 2
             } else if (
               found.point.x +
-                Number(draggable_cargo.geometry.parameters.width) / 2 >=
+                Number(draggable_cargo.current.geometry.parameters.width) / 2 >=
               cargo_area_group.children[0].scale.x * 2
             ) {
               //MAX X axis limitation draggable object according ti cargo area
-              draggable_cargo.position.x =
+              draggable_cargo.current.position.x =
                 cargo_area_group.children[0].scale.x * 2 -
-                Number(draggable_cargo.geometry.parameters.width) / 2
+                Number(draggable_cargo.current.geometry.parameters.width) / 2
             } else {
-              draggable_cargo.position.x = found.point.x
+              draggable_cargo.current.position.x = found.point.x
             }
 
             if (
               found.point.z <=
-              Number(draggable_cargo.geometry.parameters.depth) / 2
+              Number(draggable_cargo.current.geometry.parameters.depth) / 2
             ) {
               //MIN Z axis limitation draggable object according ti cargo area
-              draggable_cargo.position.z =
-                Number(draggable_cargo.geometry.parameters.depth) / 2
+              draggable_cargo.current.position.z =
+                Number(draggable_cargo.current.geometry.parameters.depth) / 2
             } else if (
               found.point.z +
-                Number(draggable_cargo.geometry.parameters.depth) / 2 >=
+                Number(draggable_cargo.current.geometry.parameters.depth) / 2 >=
               cargo_area_group.children[0].scale.z * 2
             ) {
               //MAX Z axis limitation draggable object according ti cargo area
-              draggable_cargo.position.z =
+              draggable_cargo.current.position.z =
                 cargo_area_group.children[0].scale.z * 2 -
-                Number(draggable_cargo.geometry.parameters.depth) / 2
+                Number(draggable_cargo.current.geometry.parameters.depth) / 2
             } else {
-              draggable_cargo.position.z = found.point.z
+              draggable_cargo.current.position.z = found.point.z
             }
-
-            draggable_cargo.position.y =
+            // console.log('qqqqq!!!', isPlaceholder(draggable_cargo))
+            draggable_cargo.current.position.y =
               found.point.y +
-              Number(draggable_cargo.geometry.parameters.height) / 2 //Set Y position of dragable object.
+              Number(draggable_cargo.current.geometry.parameters.height) / 2 //Set Y position of dragable object.
           }
         }
       }
+      // console.log('qqqqq', isPlaceholder(draggable_cargo))
     }
 
-    //Create function for check collision after user dragging cargo.If collision is detected, cargo comeback to start position.
-    function check_collision_of_draggable_cargo_and_other_cargos() {
-      const box1 = new THREE.Box3().setFromObject(draggable_cargo) //Create box1 type of "box3" becose "box3" have metod "intersectsBox" for detect collisions.
-      box1.min.x = box1.min.x + 0.01 //Need for correct cheching intersection bettween 2 near cargos
-      box1.min.y = box1.min.y + 0.01 //Need for correct cheching intersection bettween 2 near cargos
-      box1.min.z = box1.min.z + 0.01 //Need for correct cheching intersection bettween 2 near cargos
-
-      box1.max.x = box1.max.x - 0.01 //Need for correct cheching intersection bettween 2 near cargos
-      box1.max.y = box1.max.y - 0.01 //Need for correct cheching intersection bettween 2 near cargos
-      box1.max.z = box1.max.z - 0.01 //Need for correct cheching intersection bettween 2 near cargos
-
-      if (cargo_group.children.length > 0) {
-        for (let i = 0; i < cargo_group.children.length; i++) {
-          let box2 = new THREE.Box3().setFromObject(cargo_group.children[i])
-          if (box1.intersectsBox(box2)) {
-            console.log('collision detected')
-            draggable_cargo.position.x = backup_draggable_cargo.position.x //Need for backup cargo position to start when collision is exist
-            draggable_cargo.position.y = backup_draggable_cargo.position.y //Need for backup cargo position to start when collision is exist
-            draggable_cargo.position.z = backup_draggable_cargo.position.z //Need for backup cargo position to start when collision is exist
-          } else {
-            console.log('collision not detected')
-          }
-        }
-      }
+    //Create cargo area
+    if (cargoArea) {
+      cargo_area_adding(
+        cargoArea,
+        cargo_area_group,
+        group_of_cargo_area_attribute,
+        group_of_cargo_area_floor,
+        camera,
+        controls
+      )
+      // console.log('create cargo area')
+    }
+    if (cargos.length > 0) {
+      createCargos(cargos, cargo_group)
+      // console.log('create cargos')
     }
 
     //Create function to animation with request animation frame 60 fps
+    let animationFrameId //Need to clear resources
     function animate() {
-      dragObject()
-      requestAnimationFrame(animate)
+      // 1. Обновление контролов (например, OrbitControls)
       controls.update()
+
+      // 2. Логика перемещения объектов (если есть)
+      dragObject()
+
+      // 3. Рендеринг сцены
       renderer.render(scene, camera)
+
+      // 4. Запрос следующего кадра (в самом конце!)
+      animationFrameId = requestAnimationFrame(animate)
     }
 
     animate()
     // Очистка ресурсов при размонтировании компонента
     return () => {
-      // Останавливаем анимацию
-      renderer.dispose() // Освобождаем ресурсы рендерера
+      if (renderer) {
+        renderer.dispose() // Dispose of the WebGL context
 
-      // Удаляем canvas элемент
-      if (mountRef.current) {
-        mountRef.current.innerHTML = '' // Удаляем старый canvas
+        const gl = renderer.getContext()
+        gl.getExtension('WEBGL_lose_context')?.loseContext()
       }
+      if (scene) {
+        clearScene(scene)
+      }
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId)
+      }
+      if (mountRef.current && renderer.domElement) {
+        mountRef.current.removeChild(renderer.domElement)
+      }
+
+      window.removeEventListener('mousedown', onMouseDown)
+      window.removeEventListener('mouseup', onMouseUp)
+      window.removeEventListener('mousemove', onMouseMove)
     }
-  }, [cargoArea]) // массив зависимостей
+  }) // массив зависимостей
 
   return <div className="ThreeScene-container" ref={mountRef} /> // Контейнер для сцены
 }

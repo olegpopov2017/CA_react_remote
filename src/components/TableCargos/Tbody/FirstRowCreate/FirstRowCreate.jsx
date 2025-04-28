@@ -8,6 +8,7 @@ function FirstRowCreate({ cargos, setCargos }) {
   const [inpXpos, setInpXpos] = useState('')
   const [inpYpos, setInpYpos] = useState('')
   const [inpZpos, setInpZpos] = useState('')
+  const [inpColor, setColor] = useState('')
   const [inpQuantity, setInpQuantity] = useState('')
 
   const createCargosFromInput = () => {
@@ -54,6 +55,8 @@ function FirstRowCreate({ cargos, setCargos }) {
     const X_pos = inpXpos == '' ? 0 : inpXpos
     const Y_pos = inpYpos == '' ? 0 : inpYpos
     const Z_pos = inpZpos == '' ? 0 : inpZpos
+
+    // const colorGen = inpColor
 
     const cargo = {
       uuid: uuidGen,

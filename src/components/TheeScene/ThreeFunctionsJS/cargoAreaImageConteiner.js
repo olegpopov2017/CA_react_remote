@@ -1,9 +1,12 @@
 import * as THREE from 'three'
-import { group_of_cargo_area_attribute } from './sceneInitialization'
+// import { group_of_cargo_area_attribute } from './sceneInitialization'
 
 // scene.add(front)
 
-export function create_conteiner_picture_from_cargo_area_cuboid(cube1) {
+export function create_conteiner_picture_from_cargo_area_cuboid(
+  cube1,
+  group_of_cargo_area_attribute
+) {
   let cube = cube1
   //Create side of conteiner from picture
   let texture_side = new THREE.TextureLoader().load('./conteiner_side.png')
@@ -54,4 +57,5 @@ export function create_conteiner_picture_from_cargo_area_cuboid(cube1) {
   right.position.z = Number(cube.depth_Z / 2)
   right.rotation.y = -Math.PI / 2
   group_of_cargo_area_attribute.add(right)
+  // console.log('image ok')
 }
