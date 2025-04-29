@@ -15,7 +15,8 @@ export function createCargos(cargosProps, cargo_group) {
     let random_color_index = Math.floor(Math.random() * colors.length)
     let boxGeometry = new THREE.BoxGeometry(width, height, depth)
     let cubeMaterial = new THREE.MeshBasicMaterial({
-      color: colors[random_color_index],
+      // color: colors[random_color_index],
+      color: cargosProps[i].userColor,
     })
     let uuid = cargosProps[i].uuid
 

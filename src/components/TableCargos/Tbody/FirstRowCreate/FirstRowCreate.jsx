@@ -45,9 +45,11 @@ function FirstRowCreate({ cargos, setCargos }) {
     setCargos(manyCargos)
     return
   }
+  // const colorGen = random_color_index
 
   const createCargos = () => {
     const uuidGen = crypto.randomUUID()
+    const userColor = random_color_index
     const X_width = inpWidth
     const Y_height = inpHeight
     const Z_depth = inpDepth
@@ -56,10 +58,9 @@ function FirstRowCreate({ cargos, setCargos }) {
     const Y_pos = inpYpos == '' ? 0 : inpYpos
     const Z_pos = inpZpos == '' ? 0 : inpZpos
 
-    // const colorGen = inpColor
-
     const cargo = {
       uuid: uuidGen,
+      userColor: userColor,
       Xwidth: X_width,
       Yheight: Y_height,
       Zdepth: Z_depth,
@@ -146,3 +147,19 @@ function FirstRowCreate({ cargos, setCargos }) {
   )
 }
 export default FirstRowCreate
+
+export let colors = [
+  'aqua',
+  'antiquewhite',
+  'coral',
+  'cornflowerblue',
+  'chocolate',
+  'azure',
+  'beige',
+  'bisque',
+  'blanchedalmond',
+  'blueviolet',
+  'brown',
+]
+
+let random_color_index = colors[Math.floor(Math.random() * colors.length)]
