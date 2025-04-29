@@ -46,6 +46,7 @@ function FirstRowCreate({ cargos, setCargos }) {
     return
   }
   // const colorGen = random_color_index
+  let random_color_index = colors[Math.floor(Math.random() * colors.length)]
 
   const createCargos = () => {
     const uuidGen = crypto.randomUUID()
@@ -162,4 +163,4 @@ export let colors = [
   'brown',
 ]
 
-let random_color_index = colors[Math.floor(Math.random() * colors.length)]
+// let random_color_index = colors[Math.floor(Math.random() * colors.length)]

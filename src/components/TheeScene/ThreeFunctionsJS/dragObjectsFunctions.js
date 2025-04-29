@@ -30,7 +30,9 @@ export function endTime(
   camera,
   scene,
   draggable_cargo,
-  backup_draggable_cargo
+  backup_draggable_cargo,
+  cargos,
+  setCargos
 ) {
   endTime = null
   timeDiff = null
@@ -47,7 +49,9 @@ export function endTime(
       camera,
       scene,
       draggable_cargo,
-      backup_draggable_cargo
+      backup_draggable_cargo,
+      cargos,
+      setCargos
     )
   }
 }
@@ -72,19 +76,24 @@ function catch_draggable(
   camera,
   scene,
   draggable_cargo,
-  backup_draggable_cargo
+  backup_draggable_cargo,
+  cargos,
+  setCargos
 ) {
-  // console.log('start catch draggable1')
-  // console.log('qqqqq', isPlaceholder(draggable_cargo.current))
   if (!isPlaceholder(draggable_cargo.current)) {
     controls.enabled = false
-    check_collision_of_draggable_cargo_and_other_cargos(
-      draggable_cargo,
-      backup_draggable_cargo,
-      cargo_group
-    )
-    // console.log('dragablecargo', draggable_cargo)
-    // console.log('qqqqq', isPlaceholder(draggable_cargo))
+    if (
+      check_collision_of_draggable_cargo_and_other_cargos(
+        draggable_cargo,
+        backup_draggable_cargo,
+        cargo_group,
+        cargos,
+        setCargos
+      )
+    ) {
+      refreshCargosInReact(draggable_cargo, cargos, setCargos)
+    }
+
     draggable_cargo.current.material.opacity = 1
     draggable_cargo.current.material.transparent = false
     draggable_cargo.current.children[0].material.color.set('black')
@@ -160,7 +169,8 @@ function catch_draggable(
 function check_collision_of_draggable_cargo_and_other_cargos(
   draggable_cargo,
   backup_draggable_cargo,
-  cargo_group
+  cargo_group,
+  setCargos
 ) {
   const box1 = new THREE.Box3().setFromObject(draggable_cargo.current) //Create box1 type of "box3" becose "box3" have metod "intersectsBox" for detect collisions.
   box1.min.x = box1.min.x + 0.01 //Need for correct cheching intersection bettween 2 near cargos
@@ -182,9 +192,39 @@ function check_collision_of_draggable_cargo_and_other_cargos(
           backup_draggable_cargo.current.position.y //Need for backup cargo position to start when collision is exist
         draggable_cargo.current.position.z =
           backup_draggable_cargo.current.position.z //Need for backup cargo position to start when collision is exist
+        return false
       } else {
         console.log('collision not detected')
+        return true
       }
     }
   }
 }
+function refreshCargosInReact(draggable_cargo, cargos, setCargos) {
+  let uuid = draggable_cargo.current.uuid
+  let x =
+    draggable_cargo.current.position.x -
+    draggable_cargo.current.geometry.parameters.width / 2
+  let y =
+    draggable_cargo.current.position.y -
+    draggable_cargo.current.geometry.parameters.height / 2
+  let z =
+    draggable_cargo.current.position.z -
+    draggable_cargo.current.geometry.parameters.depth / 2
+  console.log(uuid, x, y, z)
+  let xPos = parseFloat(x.toFixed(2))
+  let yPos = parseFloat(y.toFixed(2))
+  let zPos = parseFloat(z.toFixed(2))
+  // Создаём новый массив с обновлёнными координатами
+  let newCargos = cargos.map((cargo) => {
+    if (cargo.uuid === uuid) {
+      return { ...cargo, Xposition: xPos, Yposition: yPos, Zposition: zPos }
+    }
+    return cargo // Возвращаем неизменённые объекты, которые не соответствуют uuid
+  })
+
+  // Обновляем состояние
+  setCargos(newCargos)
+}
+
+// { ...cargo.position, x: x, y: y, z: z }

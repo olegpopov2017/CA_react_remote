@@ -2,7 +2,6 @@ import './ThreeScene.css'
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import {
-  startTime,
   endTime,
   readMouseMove,
   createDraggableCargoPlaceholder,
@@ -15,7 +14,6 @@ import {
   createRenderer,
   createControls,
   clearScene,
-  // colors,
 } from './ThreeFunctionsJS/sceneInitialization'
 import { cargo_area_adding } from './ThreeFunctionsJS/cargoAreaFunctions'
 import { createCargos } from './ThreeFunctionsJS/cargoFuctions'
@@ -84,7 +82,9 @@ const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
         camera,
         scene,
         draggable_cargo,
-        backup_draggable_cargo
+        backup_draggable_cargo,
+        cargos,
+        setCargos
       )
 
     window.addEventListener('mousemove', onMouseMove)
