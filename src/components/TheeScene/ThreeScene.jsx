@@ -1,5 +1,5 @@
 import './ThreeScene.css'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import {
   endTime,
@@ -18,21 +18,44 @@ import {
 import { cargo_area_adding } from './ThreeFunctionsJS/cargoAreaFunctions'
 import { createCargos } from './ThreeFunctionsJS/cargoFuctions'
 
-// export let draggable_cargo = createDraggableCargoPlaceholder()
-// export let backup_draggable_cargo = createDraggableCargoPlaceholder()
-
 const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
   const mountRef = useRef(null) // Ссылка на контейнер для сцены
   let draggable_cargo = useRef('') //ref on count for drag cargo.
   let backup_draggable_cargo = useRef('') //ref on count for drag cargo.
 
+  const cameraRef = useRef(null)
+  // const controlsRef = useRef(null)
+  const [cameraState, setCameraState] = useState(null) // Состояние камеры
+  // console.log('camerastate:', cameraState)
   useEffect(() => {
     //Scene initialization
 
     let scene = createSceneAndLight()
     let camera = createCamera()
+    if (cameraState) {
+      console.log('oldpos', camera.position)
+      // camera.position.x = cameraState.x
+      // camera.position.y = cameraState.y
+      // camera.position.z = cameraState.z
+      camera.position.set(cameraState.x, cameraState.y, cameraState.z)
+      console.log('newpos', camera.position)
+    } else {
+      console.log('state is null')
+    }
+
     let renderer = createRenderer()
+
+    // Инициализация OrbitControls
     let controls = createControls(camera, renderer)
+    // if (cameraState) {
+    //   console.log('oldpos', controls.position0)
+    //   controls.position0.x = cameraState.x
+    //   controls.position0.y = cameraState.y
+    //   controls.position0.z = cameraState.z
+    //   console.log('newpos', controls.position0)
+    // }
+    // console.log('controls pos', controls.position0)
+
     //Adding groups to scene
     let [
       cargo_area_group,
@@ -110,9 +133,7 @@ const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
 
         if (cargos_on_ray.length > 0) {
           let found = cargos_on_ray[0]
-          // testfunc()
-          // updateTable(draggable_cargo)
-          // console.log(found)
+
           //Condition for cargo moving only upper faces of cargo (upper faces consist of two triangles with numbers 4 and 5).
           if (found.faceIndex == 4 || found.faceIndex == 5) {
             if (
@@ -154,14 +175,13 @@ const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
             } else {
               draggable_cargo.current.position.z = found.point.z
             }
-            // console.log('qqqqq!!!', isPlaceholder(draggable_cargo))
+
             draggable_cargo.current.position.y =
               found.point.y +
               Number(draggable_cargo.current.geometry.parameters.height) / 2 //Set Y position of dragable object.
           }
         }
       }
-      // console.log('qqqqq', isPlaceholder(draggable_cargo))
     }
 
     //Create cargo area
@@ -172,9 +192,9 @@ const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
         group_of_cargo_area_attribute,
         group_of_cargo_area_floor,
         camera,
-        controls
+        controls,
+        cameraState
       )
-      // console.log('create cargo area')
     }
     if (cargos.length > 0) {
       createCargos(cargos, cargo_group)
@@ -184,9 +204,11 @@ const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
     //Create function to animation with request animation frame 60 fps
     let animationFrameId //Need to clear resources
     function animate() {
+      setCameraState(camera.position.clone())
       // 1. Обновление контролов (например, OrbitControls)
       controls.update()
-
+      // fixControls = controls
+      // setCameraState(cameraRef.current)
       // 2. Логика перемещения объектов (если есть)
       dragObject()
 
@@ -220,7 +242,7 @@ const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
       window.removeEventListener('mouseup', onMouseUp)
       window.removeEventListener('mousemove', onMouseMove)
     }
-  }) // массив зависимостей
+  }, [cargos, cargoArea]) // массив зависимостей
 
   return <div className="ThreeScene-container" ref={mountRef} /> // Контейнер для сцены
 }

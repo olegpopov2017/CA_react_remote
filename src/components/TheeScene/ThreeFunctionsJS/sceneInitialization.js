@@ -61,21 +61,6 @@ export function createControls(camera, renderer) {
   return controls
 }
 
-//Adding groups for objects and another for pallets.
-// export let colors = [
-//   'aqua',
-//   'antiquewhite',
-//   'coral',
-//   'cornflowerblue',
-//   'chocolate',
-//   'azure',
-//   'beige',
-//   'bisque',
-//   'blanchedalmond',
-//   'blueviolet',
-//   'brown',
-// ]
-
 export function clearScene(sce) {
   // Проходим по всем объектам в сцене и очищаем их
   if (!sce) {
