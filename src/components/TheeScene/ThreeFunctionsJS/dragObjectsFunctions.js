@@ -11,10 +11,7 @@ export function isPlaceholder(object) {
 }
 
 export function startTime(event, time) {
-  //   time = null
-  // console.log('start')
   time = new Date()
-  // console.log('starttime', time)
 }
 
 export function endTime(
@@ -62,8 +59,6 @@ export function readMouseMove(event, renderer, moveMouse) {
 
   moveMouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1
   moveMouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1
-  //   console.clear()
-  //   console.log(moveMouse.x)
 }
 
 //Realtime catching object after mouse clicking on canvas and save values in variable "draggable".Use in raycaster dragging objects
@@ -105,7 +100,6 @@ function catch_draggable(
     backup_draggable_cargo.current = createDraggableCargoPlaceholder()
 
     if (isPlaceholder(draggable_cargo.current)) {
-      // console.log('no catch')
       //If we will picking cargo for dragging
       controls.enabled = true
       return
@@ -139,13 +133,7 @@ function catch_draggable(
     let found = raycaster.intersectObjects(cargo_group.children, false)
 
     if (found.length > 0 && found[0].object.userData.isFloor == false) {
-      // console.log('1', draggable_cargo.current)
-
       draggable_cargo.current = found[0].object
-      // draggable_cargo = structuredClone(found[0].object)
-      // console.log('2', draggable_cargo)
-      //   console.log(found[0].object)
-      // console.log(isPlaceholder(draggable_cargo))
       backup_draggable_cargo.current = found[0].object.clone()
 
       draggable_cargo.current.userData.intersecteble = false
@@ -156,9 +144,6 @@ function catch_draggable(
       draggable_cargo.current.material.opacity = 0.2
       draggable_cargo.current.material.transparent = true
       draggable_cargo.current.children[0].material.color.set('GREEN')
-
-      //   console.log(draggable_cargo)
-      //   console.log(backup_draggable_cargo)
 
       scene.add(draggable_cargo.current) //Need for jumping cargos after mouse moving  and intersect mouse with other object
     }
@@ -185,7 +170,6 @@ function check_collision_of_draggable_cargo_and_other_cargos(
     for (let i = 0; i < cargo_group.children.length; i++) {
       let box2 = new THREE.Box3().setFromObject(cargo_group.children[i])
       if (box1.intersectsBox(box2)) {
-        console.log('collision detected')
         draggable_cargo.current.position.x =
           backup_draggable_cargo.current.position.x //Need for backup cargo position to start when collision is exist
         draggable_cargo.current.position.y =
@@ -194,7 +178,6 @@ function check_collision_of_draggable_cargo_and_other_cargos(
           backup_draggable_cargo.current.position.z //Need for backup cargo position to start when collision is exist
         return false
       } else {
-        console.log('collision not detected')
         return true
       }
     }
@@ -211,7 +194,6 @@ function refreshCargosInReact(draggable_cargo, cargos, setCargos) {
   let z =
     draggable_cargo.current.position.z -
     draggable_cargo.current.geometry.parameters.depth / 2
-  console.log(uuid, x, y, z)
   let xPos = parseFloat(x.toFixed(2))
   let yPos = parseFloat(y.toFixed(2))
   let zPos = parseFloat(z.toFixed(2))

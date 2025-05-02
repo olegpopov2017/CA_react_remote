@@ -122,7 +122,6 @@ export function create_RGB_axes_helper_with_symbols(
     text.position.y = 0
     text.position.z = depth * 1.3 + min //+ Number(text.geometry.parameters.options.size)
     text.rotation.y = Math.PI / 2
-    // console.log(text)
     group_of_cargo_area_attribute.add(text)
   })
 

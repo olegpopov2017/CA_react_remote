@@ -24,37 +24,21 @@ const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
   let backup_draggable_cargo = useRef('') //ref on count for drag cargo.
 
   const cameraRef = useRef(null)
-  // const controlsRef = useRef(null)
   const [cameraState, setCameraState] = useState(null) // Состояние камеры
-  // console.log('camerastate:', cameraState)
   useEffect(() => {
     //Scene initialization
 
     let scene = createSceneAndLight()
     let camera = createCamera()
     if (cameraState) {
-      console.log('oldpos', camera.position)
-      // camera.position.x = cameraState.x
-      // camera.position.y = cameraState.y
-      // camera.position.z = cameraState.z
       camera.position.set(cameraState.x, cameraState.y, cameraState.z)
-      console.log('newpos', camera.position)
     } else {
-      console.log('state is null')
     }
 
     let renderer = createRenderer()
 
     // Инициализация OrbitControls
     let controls = createControls(camera, renderer)
-    // if (cameraState) {
-    //   console.log('oldpos', controls.position0)
-    //   controls.position0.x = cameraState.x
-    //   controls.position0.y = cameraState.y
-    //   controls.position0.z = cameraState.z
-    //   console.log('newpos', controls.position0)
-    // }
-    // console.log('controls pos', controls.position0)
 
     //Adding groups to scene
     let [
@@ -118,9 +102,7 @@ const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
     //Draggable cargo moving only upperfaces of this array objects (face index = 4 or 5)
     function dragObject() {
       raycaster.setFromCamera(moveMouse, camera)
-      // console.log('3', draggable_cargo)
       if (!isPlaceholder(draggable_cargo.current)) {
-        // console.log('qqqqq', isPlaceholder(draggable_cargo))
         let array_of_floors_for_draggable = [
           ...group_of_cargo_area_floor.children,
           ...cargo_group.children,
@@ -205,11 +187,8 @@ const ThreeScene = ({ cargos, setCargos, cargoArea, setCargoArea }) => {
     let animationFrameId //Need to clear resources
     function animate() {
       setCameraState(camera.position.clone())
-      // 1. Обновление контролов (например, OrbitControls)
+      // 1. Обновление контролов ( OrbitControls)
       controls.update()
-      // fixControls = controls
-      // setCameraState(cameraRef.current)
-      // 2. Логика перемещения объектов (если есть)
       dragObject()
 
       // 3. Рендеринг сцены

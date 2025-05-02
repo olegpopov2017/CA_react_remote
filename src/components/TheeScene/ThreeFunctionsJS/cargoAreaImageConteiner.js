@@ -57,5 +57,4 @@ export function create_conteiner_picture_from_cargo_area_cuboid(
   right.position.z = Number(cube.depth_Z / 2)
   right.rotation.y = -Math.PI / 2
   group_of_cargo_area_attribute.add(right)
-  // console.log('image ok')
 }

@@ -1,5 +1,6 @@
 import './Thead.css'
 import { useState } from 'react'
+import { v4 as uuidv4Gen } from 'uuid'
 function Thead({ cargoArea, setCargoArea }) {
   const [inpUUID, setInpUUID] = useState('')
   const [inpWidth, setInpWidth] = useState('')
@@ -23,7 +24,8 @@ function Thead({ cargoArea, setCargoArea }) {
   }
 
   const createCargoArea = () => {
-    const uuidGen = crypto.randomUUID()
+    // const uuidGen = crypto.randomUUID()
+    const uuidGen = uuidv4Gen()
     const X_width = inpWidth
     const Y_height = inpHeight
     const Z_depth = inpDepth

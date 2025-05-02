@@ -1,5 +1,6 @@
 import './FirstRowCreate.css'
 import { useState } from 'react'
+import { v4 as uuidv4Gen } from 'uuid'
 
 function FirstRowCreate({ cargos, setCargos }) {
   const [inpWidth, setInpWidth] = useState('')
@@ -49,7 +50,8 @@ function FirstRowCreate({ cargos, setCargos }) {
   let random_color_index = colors[Math.floor(Math.random() * colors.length)]
 
   const createCargos = () => {
-    const uuidGen = crypto.randomUUID()
+    // const uuidGen = crypto.randomUUID()
+    const uuidGen = uuidv4Gen()
     const userColor = random_color_index
     const X_width = inpWidth
     const Y_height = inpHeight

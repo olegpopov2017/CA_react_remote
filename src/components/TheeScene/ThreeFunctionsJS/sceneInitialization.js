@@ -18,10 +18,6 @@ export function createAndAddingGroups() {
   let group_of_cargo_area_floor = new THREE.Group() //Need for drag cargos and check collisions.
   let group_of_cargo_area_attribute = new THREE.Group() //Contain rgb helpers,pictures and others visual atributes.
 
-  // refScene.add(cargo_area_group)
-  // refScene.add(cargo_group)
-  // refScene.add(group_of_cargo_area_floor)
-  // refScene.add(group_of_cargo_area_attribute)
   return [
     cargo_area_group,
     cargo_group,
