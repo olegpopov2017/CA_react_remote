@@ -71,6 +71,7 @@ function FirstRowCreate({ cargos, setCargos }) {
       Yposition: Y_pos,
       Zposition: Z_pos,
     }
+
     return cargo
   }
 
