@@ -1,5 +1,6 @@
 import './FirstRowCreate.css'
 import { useState } from 'react'
+import { v4 as uuidv4Gen } from 'uuid'
 
 function FirstRowCreate({ cargos, setCargos }) {
   const [inpWidth, setInpWidth] = useState('')
@@ -8,6 +9,7 @@ function FirstRowCreate({ cargos, setCargos }) {
   const [inpXpos, setInpXpos] = useState('')
   const [inpYpos, setInpYpos] = useState('')
   const [inpZpos, setInpZpos] = useState('')
+  const [inpColor, setColor] = useState('')
   const [inpQuantity, setInpQuantity] = useState('')
 
   const createCargosFromInput = () => {
@@ -44,9 +46,13 @@ function FirstRowCreate({ cargos, setCargos }) {
     setCargos(manyCargos)
     return
   }
+  // const colorGen = random_color_index
+  let random_color_index = colors[Math.floor(Math.random() * colors.length)]
 
   const createCargos = () => {
-    const uuidGen = crypto.randomUUID()
+    // const uuidGen = crypto.randomUUID()
+    const uuidGen = uuidv4Gen()
+    const userColor = random_color_index
     const X_width = inpWidth
     const Y_height = inpHeight
     const Z_depth = inpDepth
@@ -57,6 +63,7 @@ function FirstRowCreate({ cargos, setCargos }) {
 
     const cargo = {
       uuid: uuidGen,
+      userColor: userColor,
       Xwidth: X_width,
       Yheight: Y_height,
       Zdepth: Z_depth,
@@ -143,3 +150,19 @@ function FirstRowCreate({ cargos, setCargos }) {
   )
 }
 export default FirstRowCreate
+
+export let colors = [
+  'aqua',
+  'antiquewhite',
+  'coral',
+  'cornflowerblue',
+  'chocolate',
+  'azure',
+  'beige',
+  'bisque',
+  'blanchedalmond',
+  'blueviolet',
+  'brown',
+]
+
+// let random_color_index = colors[Math.floor(Math.random() * colors.length)]
