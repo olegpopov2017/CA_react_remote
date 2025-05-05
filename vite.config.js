@@ -6,7 +6,7 @@ export default defineConfig({
     plugins: [react()],
     build: {
         outDir: 'dist',  // Папка для сборки
-        sourcemap: true, // Карты кода для отладки (можно отключить в продакшене)
+        sourcemap: false, // Карты кода для отладки (можно отключить в продакшене)
         minify: 'true', // Минификация кода (опционально)
         chunkSizeWarningLimit: 1000, // Увеличивает лимит для предупреждений о размере чанков
       },
