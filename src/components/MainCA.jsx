@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import TableCargos from './TableCargos/TableCargos.jsx'
-import TableCargoArea from './TableCargoArea/TableCargoArea.jsx'
-import ThreeScene from './TheeScene/ThreeScene.jsx'
+import TableCargos from './dataTables/TableCargos/TableCargos.jsx'
+import TableCargoArea from './dataTables/TableCargoArea/TableCargoArea.jsx'
+import ThreeScene from './TheeJSComponent/ThreeScene.jsx'
 //
 function MainCA() {
   const [cargos, setCargos] = useState([])
