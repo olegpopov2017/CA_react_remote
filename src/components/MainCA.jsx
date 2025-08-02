@@ -9,7 +9,7 @@ import ThreeScene from './TheeJSComponent/ThreeScene.jsx'
  * This component manages the state for cargos and cargo areas, and
  * passes down these states to the ThreeScene component for rendering
  * the 3D environment and the TableCargos and TableCargoArea components
- * for displaying and managing the cargo data.
+ * for displaying and managing the cargo data
  */
 
 //
