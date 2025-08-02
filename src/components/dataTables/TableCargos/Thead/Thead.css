@@ -6,15 +6,9 @@ thead th {
 
   position: sticky;
   top: 0; /* Прилипает к верху */
-
-  /* height: 40px; */
 }
 thead button {
-  /* Общие стили для всех строк таблицы */
-  /* background-color: #f8f9fa; */
-  /* border-bottom: 1px solid #dee2e6; */
   width: 120px;
-  /* height: 40px; */
 }
 .finishTH {
   width: 200px;

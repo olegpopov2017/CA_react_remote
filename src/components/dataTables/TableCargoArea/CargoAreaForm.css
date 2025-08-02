@@ -1,0 +1,47 @@
+.cargoAreaForm-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.cargoAreaForm-table {
+  border-collapse: collapse;
+  width: 320px;
+  table-layout: fixed;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.cargoAreaForm-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  vertical-align: middle;
+  text-align: left;
+  width: 50%;
+}
+
+.uuid-display {
+  font-size: 11px;
+  word-break: break-word;
+  line-height: 1.2;
+  max-height: 3em;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.cargoAreaForm-table input {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.submit-cell {
+  text-align: center;
+  padding: 10px;
+}
+
+.submit-cell button {
+  padding: 6px 12px;
+  font-size: 14px;
+}

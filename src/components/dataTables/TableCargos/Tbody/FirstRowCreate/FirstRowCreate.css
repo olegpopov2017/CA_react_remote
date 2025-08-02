@@ -1,43 +1,22 @@
-td {
-  /* Общие стили для всех строк таблицы */
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
-  width: 100px;
-  text-align: center;
-}
-input {
-  width: 90%;
-}
-/* .create1 {
-  background-color: #46f062;
-}
-.inputQuantity {
-  width: 50%;
-} */
-.finishTd {
-}
-
-finishTd {
-  padding: 0; /* Убираем стандартные отступы ячейки */
-}
-
-.finish-input-button-group {
+.cargoAreaForm-container {
   display: flex;
-  justify-content: space-between;
-  /* align-items: center; Вертикальное выравнивание */
-  gap: 8px; /* Расстояние между элементами */
-  padding: 4px 8px; /* Внутренние отступы */
+  justify-content: center;
+  margin: 20px;
 }
 
-.finish-input-button-group input {
-  flex: 1; /*Занимает всё доступное пространство*/
-  min-width: 0; /* Фикс переполнения */
-  width: 50%;
-  /* padding: 6px; */
+.cargoAreaForm-table {
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
 }
 
-.finish-input-button-group button {
-  white-space: nowrap; /* Текст кнопки не переносится */
-  /* padding: 6px 12px; */
-  background-color: #46f062;
+.cargoAreaForm-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.cargoAreaForm-table input {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
 }

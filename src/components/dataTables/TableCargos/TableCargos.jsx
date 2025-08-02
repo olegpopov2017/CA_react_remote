@@ -1,9 +1,7 @@
-// import { useState } from 'react'
 import './TableCargos.css'
 
 import Thead from './Thead/Thead.jsx'
 import Tbody from './Tbody/Tbody.jsx'
-// import {} from './helpers'
 
 function TableCargos({ cargos, setCargos }) {
   return (

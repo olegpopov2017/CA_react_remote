@@ -1,8 +1,9 @@
 import { useState } from 'react'
 
 import TableCargos from './dataTables/TableCargos/TableCargos.jsx'
-import TableCargoArea from './dataTables/TableCargoArea/TableCargoArea.jsx'
+import TableCargoArea from './dataTables/TableCargoArea/CargoAreaForm.jsx'
 import ThreeScene from './TheeJSComponent/ThreeScene.jsx'
+import CargoAreaForm from './dataTables/TableCargoArea/CargoAreaForm.jsx'
 /**
  * Main component that orchestrates the 3D scene and the data tables.
  *
@@ -25,7 +26,7 @@ function MainCA() {
         setCargoArea={setCargoArea}
       />
       <TableCargos cargos={cargos} setCargos={setCargos} />
-      <TableCargoArea cargoArea={cargoArea} setCargoArea={setCargoArea} />
+      <CargoAreaForm cargoArea={cargoArea} setCargoArea={setCargoArea} />
     </>
   )
 }
