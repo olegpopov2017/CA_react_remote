@@ -5,4 +5,7 @@
   transform: none;
   width: 100%; /* или нужная ширина */
   height: 450px; /* например, высота сцены */
+  display: flex;
+  justify-content: center; /* центрирование по горизонтали */
+  align-items: center; /* центрирование по вертикали */
 }

@@ -8,7 +8,7 @@
 .scene-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 /* РЯД С ФОРМОЙ И ТАБЛИЦЕЙ */
