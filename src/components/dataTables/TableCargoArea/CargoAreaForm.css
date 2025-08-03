@@ -1,5 +1,5 @@
 .cargoAreaForm-container {
-  width: 320px; /* добавлено */
+  /* width: 320px; добавлено */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
 
 .cargoAreaForm-table {
   border-collapse: collapse;
-  width: 320px;
+  /* width: 320px; */
   table-layout: fixed;
   background-color: #f8f8f8;
   border: 1px solid #ccc;
