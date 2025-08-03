@@ -1,6 +1,8 @@
 .ThreeScene-container {
-  position: fixed;
-  bottom: 450px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative; /* или убрать полностью */
+  bottom: auto;
+  left: auto;
+  transform: none;
+  width: 100%; /* или нужная ширина */
+  height: 450px; /* например, высота сцены */
 }
