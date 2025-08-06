@@ -1,49 +1,46 @@
-.cargoAreaForm-container {
-  /* width: 320px; добавлено */
-  height: 100%;
+.cargoAreaForm-box {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-}
-
-.cargoAreaForm-table {
-  border-collapse: collapse;
-  /* width: 320px; */
-  table-layout: fixed;
-  background-color: #f8f8f8;
+  gap: 10px;
+  width: 220px;
+  padding: 10px;
   border: 1px solid #ccc;
   font-size: 14px;
 }
 
-.cargoAreaForm-table td {
-  padding: 8px;
-  border: 1px solid #ccc;
-  vertical-align: middle;
-  text-align: left;
-  width: 50%;
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.uuid-display {
-  font-size: 11px;
-  word-break: break-word;
-  line-height: 1.2;
-  max-height: 3em;
-  overflow: hidden;
-  white-space: normal;
+.form-row label {
+  flex: 1;
+  padding-right: 10px;
 }
 
-.cargoAreaForm-table input {
-  width: 100%;
-  padding: 4px;
+.form-row input {
+  flex: 1;
+  height: 24px;
   box-sizing: border-box;
 }
 
-.submit-cell {
-  text-align: center;
-  padding: 10px;
+.uuid-display {
+  flex: 1;
+  font-size: 12px;
+  background-color: #f8f8f8;
+  padding: 4px;
+  border: 1px solid #ccc;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.submit-cell button {
+.form-row.submit {
+  justify-content: center;
+}
+
+.form-row.submit button {
   padding: 6px 12px;
-  font-size: 14px;
 }

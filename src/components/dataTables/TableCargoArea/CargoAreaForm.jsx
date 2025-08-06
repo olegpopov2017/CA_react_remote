@@ -33,54 +33,38 @@ function CargoAreaForm({ cargoArea, setCargoArea }) {
   }
 
   return (
-    <div className="cargoAreaForm-container">
-      <table className="cargoAreaForm-table">
-        <tbody>
-          <tr>
-            <td>UUID</td>
-            <td>
-              <div className="uuid-display">{inpUUID || '—'}</div>
-            </td>
-          </tr>
-          <tr>
-            <td>X width</td>
-            <td>
-              <input
-                type="number"
-                value={inpWidth}
-                onChange={(e) => setInpWidth(e.target.value)}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>Y height</td>
-            <td>
-              <input
-                type="number"
-                value={inpHeight}
-                onChange={(e) => setInpHeight(e.target.value)}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>Z depth</td>
-            <td>
-              <input
-                type="number"
-                value={inpDepth}
-                onChange={(e) => setInpDepth(e.target.value)}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="2" className="submit-cell">
-              <button onClick={createUpdateCargoArea}>
-                Создать / Изменить
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="cargoAreaForm-box">
+      <div className="form-row">
+        <label>UUID</label>
+        <div className="uuid-display">{inpUUID || '—'}</div>
+      </div>
+      <div className="form-row">
+        <label>X width</label>
+        <input
+          type="number"
+          value={inpWidth}
+          onChange={(e) => setInpWidth(e.target.value)}
+        />
+      </div>
+      <div className="form-row">
+        <label>Y height</label>
+        <input
+          type="number"
+          value={inpHeight}
+          onChange={(e) => setInpHeight(e.target.value)}
+        />
+      </div>
+      <div className="form-row">
+        <label>Z depth</label>
+        <input
+          type="number"
+          value={inpDepth}
+          onChange={(e) => setInpDepth(e.target.value)}
+        />
+      </div>
+      <div className="form-row submit">
+        <button onClick={createUpdateCargoArea}>Создать / Изменить</button>
+      </div>
     </div>
   )
 }

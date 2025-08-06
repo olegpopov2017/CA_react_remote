@@ -7,7 +7,7 @@ function Thead({ cargos, setCargos }) {
   }
   return (
     <thead>
-      <tr style={{ backgroundColor: '#f2f2f2' }}>
+      <tr>
         <th>UUID</th>
         <th>X width</th>
         <th>Y height</th>

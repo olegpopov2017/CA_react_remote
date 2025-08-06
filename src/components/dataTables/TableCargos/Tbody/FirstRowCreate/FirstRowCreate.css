@@ -1,34 +1,35 @@
 td {
-  /* Общие стили для всех строк таблицы */
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
+  background-color: white;
   width: 100px;
+  height: 25px;
   text-align: center;
 }
 input {
   width: 90%;
 }
 
-finishTd {
-  padding: 0; /* Убираем стандартные отступы ячейки */
-}
-
 .finish-input-button-group {
   display: flex;
-  justify-content: space-between;
-
-  gap: 8px; /* Расстояние между элементами */
-  padding: 4px 8px; /* Внутренние отступы */
+  justify-content: space-around;
 }
 
 .finish-input-button-group input {
-  flex: 1; /*Занимает всё доступное пространство*/
-  min-width: 0; /* Фикс переполнения */
   width: 50%;
 }
 
+/* button styles */
 .finish-input-button-group button {
-  white-space: nowrap; /* Текст кнопки не переносится */
+  width: 35%;
+  background-color: #cbf7cd;
+  border: none;
+  border-radius: 8px;
+  /* padding: 10px; */
+  color: #858181;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  background-color: #46f062;
+.finish-input-button-group button:hover {
+  background-color: #10e91f;
 }
