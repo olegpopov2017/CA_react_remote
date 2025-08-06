@@ -1,1 +1,30 @@
+.delete-cargo-button {
+  background-color: #f5a5a5;
+  border: none;
+  border-radius: 8px;
+  color: #f8f6f6;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+.delete-cargo-button:hover {
+  background-color: #c9240f;
+}
+
+.change-cargo-data-input {
+  width: 90%;
+  /* padding: 12px 16px; */
+  text-align: center;
+  /* font-size: 16px; */
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.change-cargo-data-input:focus {
+  border-color: #232fd6;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(227, 236, 222, 0.2);
+}

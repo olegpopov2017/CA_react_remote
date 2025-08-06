@@ -36,6 +36,8 @@ function Yheight({ uuid, initialYheight, cargos, setCargos }) {
     <td onClick={() => startEdit(uuid)}>
       {editing.id === uuid ? (
         <input
+          className="change-cargo-data-input"
+          type="number"
           ref={inputRef}
           defaultValue={initialYheight}
           onKeyDown={handleKeyDown}

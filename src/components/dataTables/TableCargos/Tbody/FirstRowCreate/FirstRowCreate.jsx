@@ -80,6 +80,7 @@ function FirstRowCreate({ cargos, setCargos }) {
       <td></td>
       <td>
         <input
+          className="inputCargoParameters"
           name="input_width"
           type="number"
           placeholder="введите..."
@@ -89,6 +90,7 @@ function FirstRowCreate({ cargos, setCargos }) {
       </td>
       <td>
         <input
+          className="inputCargoParameters"
           name="input_height"
           type="number"
           placeholder="введите..."
@@ -98,6 +100,7 @@ function FirstRowCreate({ cargos, setCargos }) {
       </td>
       <td>
         <input
+          className="inputCargoParameters"
           name="input_length"
           type="number"
           placeholder="введите..."
@@ -107,6 +110,7 @@ function FirstRowCreate({ cargos, setCargos }) {
       </td>
       <td>
         <input
+          className="inputCargoParameters"
           name="input_pos_x"
           type="number"
           placeholder="введите..."
@@ -116,6 +120,7 @@ function FirstRowCreate({ cargos, setCargos }) {
       </td>
       <td>
         <input
+          className="inputCargoParameters"
           name="input_pos_x"
           type="number"
           placeholder="введите..."
@@ -125,6 +130,7 @@ function FirstRowCreate({ cargos, setCargos }) {
       </td>
       <td>
         <input
+          className="inputCargoParameters"
           name="input_pos_z"
           type="number"
           placeholder="введите..."

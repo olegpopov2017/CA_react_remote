@@ -36,6 +36,8 @@ function Xwidth({ uuid, initialXwidth, cargos, setCargos }) {
     <td onClick={() => startEdit(uuid)}>
       {editing.id === uuid ? (
         <input
+          className="change-cargo-data-input"
+          type="number"
           ref={inputRef}
           defaultValue={initialXwidth}
           onKeyDown={handleKeyDown}

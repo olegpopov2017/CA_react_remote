@@ -1,30 +1,60 @@
+/* table cell styles */
 td {
   background-color: white;
   width: 100px;
   height: 25px;
   text-align: center;
 }
-input {
+
+/*  input field styles  */
+.inputCargoParameters {
   width: 90%;
+  /* padding: 12px 16px; */
+  text-align: center;
+  /* font-size: 16px; */
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.inputCargoParameters:focus {
+  border-color: #29db11;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(227, 236, 222, 0.2);
+}
+
+/* style input quantity and button create style */
 .finish-input-button-group {
   display: flex;
   justify-content: space-around;
 }
 
+/* input quantity styles */
 .finish-input-button-group input {
   width: 50%;
+  /* padding: 12px 16px; */
+  text-align: center;
+  /* font-size: 16px; */
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* button styles */
+.finish-input-button-group input:focus {
+  border-color: #29db11;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(227, 236, 222, 0.2);
+}
+
+/* button create styles */
 .finish-input-button-group button {
   width: 35%;
   background-color: #cbf7cd;
   border: none;
   border-radius: 8px;
-  /* padding: 10px; */
-  color: #858181;
+  color: #fffcfc;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -33,3 +63,20 @@ input {
 .finish-input-button-group button:hover {
   background-color: #10e91f;
 }
+
+/* .finish-input-button-group button {
+  width: 35%;
+  background-color: #d1e7dd;
+  border: none;
+  border-radius: 10px;
+    color: #155724;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.finish-input-button-group button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+} */

@@ -10,6 +10,17 @@ thead th {
 }
 thead button {
   width: 120px;
+  background-color: #f5a5a5;
+  border: none;
+  border-radius: 8px;
+  color: #f8f6f6;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+thead button:hover {
+  background-color: #c9240f;
 }
 .finishTH {
   width: 200px;
