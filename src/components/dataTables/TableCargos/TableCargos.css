@@ -2,13 +2,14 @@
   width: 100%;
   height: 300px;
   overflow-y: auto;
+  border: 1px solid #ccc;
 }
 
 .table-cargos {
   table-layout: fixed; /* Важно! */
   width: 100%; /* Растягивается на всю ширину контейнера */
   border-collapse: collapse; /* Убирает двойные границы */
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
 }
 
 .table-cargos th {
@@ -17,6 +18,6 @@
 
 .table-cargos th,
 .table-cargos td {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   height: 25px;
 }

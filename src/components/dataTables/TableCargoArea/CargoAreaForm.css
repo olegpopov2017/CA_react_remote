@@ -26,9 +26,22 @@
   width: 141px;
   font-family: Arial, sans-serif;
   font-size: 10px;
+  text-align: center;
 }
 
-.form-row.submit button {
+.form-row button {
+  width: 70%;
+  background-color: #cbf7cd;
+  border: none;
+  border-radius: 8px;
+  color: #666262;
+  /* font-weight: bold; */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-row button:hover {
+  background-color: #10e91f;
 }
 
 .form-row input {

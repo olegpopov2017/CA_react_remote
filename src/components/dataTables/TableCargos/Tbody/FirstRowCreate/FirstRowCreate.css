@@ -54,8 +54,8 @@ td {
   background-color: #cbf7cd;
   border: none;
   border-radius: 8px;
-  color: #fffcfc;
-  font-weight: bold;
+  color: #666262;
+  /* font-weight: bold; */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }

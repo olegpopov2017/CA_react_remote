@@ -2,8 +2,8 @@
   background-color: #f5a5a5;
   border: none;
   border-radius: 8px;
-  color: #f8f6f6;
-  font-weight: bold;
+  color: #666262;
+  /* font-weight: bold; */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
