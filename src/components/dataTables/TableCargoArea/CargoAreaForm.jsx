@@ -35,34 +35,37 @@ function CargoAreaForm({ cargoArea, setCargoArea }) {
   return (
     <div className="cargoAreaForm-box">
       <div className="form-row">
-        <label>UUID</label>
+        <label className="left-cell-of-cargo-area-table">UUID</label>
         <div className="uuid-display">{inpUUID || '—'}</div>
       </div>
       <div className="form-row">
-        <label>X width</label>
+        <label className="left-cell-of-cargo-area-table">X width</label>
         <input
+          className="right-cell-of-cargo-area-table"
           type="number"
           value={inpWidth}
           onChange={(e) => setInpWidth(e.target.value)}
         />
       </div>
       <div className="form-row">
-        <label>Y height</label>
+        <label className="left-cell-of-cargo-area-table">Y height</label>
         <input
+          className="right-cell-of-cargo-area-table"
           type="number"
           value={inpHeight}
           onChange={(e) => setInpHeight(e.target.value)}
         />
       </div>
       <div className="form-row">
-        <label>Z depth</label>
+        <label className="left-cell-of-cargo-area-table">Z depth</label>
         <input
+          className="right-cell-of-cargo-area-table"
           type="number"
           value={inpDepth}
           onChange={(e) => setInpDepth(e.target.value)}
         />
       </div>
-      <div className="form-row submit">
+      <div className="form-row">
         <button onClick={createUpdateCargoArea}>Создать / Изменить</button>
       </div>
     </div>
