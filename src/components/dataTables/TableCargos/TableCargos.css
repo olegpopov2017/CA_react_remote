@@ -12,8 +12,7 @@
 }
 
 .table-cargos th {
-  border: 1px solid #ccc;
-  /* height: 25px; */
+  height: 25px;
 }
 
 .table-cargos th,
