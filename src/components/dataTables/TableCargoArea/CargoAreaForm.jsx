@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { v4 as uuidv4Gen } from 'uuid'
 import './CargoAreaForm.css'
 
-function CargoAreaForm({ cargoArea, setCargoArea }) {
+function CargoAreaForm({ cargoArea, setCargoArea, cargos, setCargos }) {
   const [inpUUID, setInpUUID] = useState('')
   const [inpWidth, setInpWidth] = useState('')
   const [inpHeight, setInpHeight] = useState('')
@@ -66,7 +66,8 @@ function CargoAreaForm({ cargoArea, setCargoArea }) {
         />
       </div>
       <div className="form-row">
-        <button onClick={createUpdateCargoArea}>Создать / Изменить</button>
+        <button onClick={createUpdateCargoArea}>Создать</button>
+        <button onClick={createUpdateCargoArea}>Расчитать</button>
       </div>
     </div>
   )
