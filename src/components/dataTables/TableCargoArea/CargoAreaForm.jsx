@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { v4 as uuidv4Gen } from 'uuid'
+import SendToAlgorithmModal from '../../modals/SendToAlgorithmModal/SendToAlgorithmModal.jsx'
 import './CargoAreaForm.css'
 
 function CargoAreaForm({ cargoArea, setCargoArea, cargos, setCargos }) {
@@ -7,6 +8,7 @@ function CargoAreaForm({ cargoArea, setCargoArea, cargos, setCargos }) {
   const [inpWidth, setInpWidth] = useState('')
   const [inpHeight, setInpHeight] = useState('')
   const [inpDepth, setInpDepth] = useState('')
+  const [showModalAlgorithm, setShowModalAlgorithm] = useState(false)
 
   const createUpdateCargoArea = () => {
     if (!inpWidth || !inpHeight || !inpDepth) {
@@ -67,8 +69,18 @@ function CargoAreaForm({ cargoArea, setCargoArea, cargos, setCargos }) {
       </div>
       <div className="form-row">
         <button onClick={createUpdateCargoArea}>Создать</button>
-        <button onClick={createUpdateCargoArea}>Расчитать</button>
+        <button onClick={() => setShowModalAlgorithm(true)}>Расчитать</button>
       </div>
+      {/* Модалка */}
+      {showModalAlgorithm && (
+        <SendToAlgorithmModal
+          cargos={cargos}
+          setCargos={setCargos}
+          cargoArea={cargoArea}
+          setCargoArea={setCargoArea}
+          onClose={() => setShowModalAlgorithm(false)}
+        />
+      )}
     </div>
   )
 }
