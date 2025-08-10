@@ -66,16 +66,53 @@
 .close-button:hover {
   background-color: #c9240f;
 }
-/* .modal {
-  background: white;
-  min-width: 300px;
+
+/* Styles for checkbox */
+.checkbox-line-arrangement,
+.checkbox-center-arrangement {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
-  padding: 20px;
-} */
-/* .modal > * {
-  width: 100%;
-  text-align: center;
-} */
+  gap: 8px; /* расстояние между текстом и переключателем */
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Скрываем стандартный чекбокс */
+.checkbox-line-arrangement input[type='checkbox'],
+.checkbox-center-arrangement input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 30px;
+  height: 16px;
+  background: #ccc;
+  border-radius: 16px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.checkbox-line-arrangement input[type='checkbox']::after,
+.checkbox-center-arrangement input[type='checkbox']::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.checkbox-line-arrangement input[type='checkbox']:checked,
+.checkbox-center-arrangement input[type='checkbox']:checked {
+  background: #10e91f;
+}
+
+.checkbox-line-arrangement input[type='checkbox']:checked::after,
+.checkbox-center-arrangement input[type='checkbox']:checked::after {
+  transform: translateX(14px);
+}
