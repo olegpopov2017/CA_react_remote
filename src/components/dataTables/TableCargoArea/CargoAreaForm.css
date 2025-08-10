@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 220px;
   border: 1px solid #ccc;
+  border-radius: 5px;
   font-size: 14px;
 }
 
@@ -30,7 +31,7 @@
 }
 
 .form-row button {
-  width: 70%;
+  width: 45%;
   background-color: #cbf7cd;
   border: none;
   border-radius: 8px;

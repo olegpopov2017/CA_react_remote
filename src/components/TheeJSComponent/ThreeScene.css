@@ -8,4 +8,10 @@
   display: flex;
   justify-content: center; /* центрирование по горизонтали */
   align-items: center; /* центрирование по вертикали */
+  /* border-radius: 5px;
+  border: 1px solid #ccc; */
+}
+canvas {
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }

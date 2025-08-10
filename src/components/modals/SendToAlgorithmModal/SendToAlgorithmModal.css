@@ -15,7 +15,8 @@
 
 .fieldset {
   border: none;
-  margin: 0;
+  /* margin: ; */
+  /* padding: 50px; */
   text-align: center;
 }
 
@@ -79,7 +80,7 @@
   user-select: none;
 }
 
-/* Скрываем стандартный чекбокс */
+/* Styles for checkbox */
 .checkbox-line-arrangement input[type='checkbox'],
 .checkbox-center-arrangement input[type='checkbox'] {
   appearance: none;
@@ -115,4 +116,19 @@
 .checkbox-line-arrangement input[type='checkbox']:checked::after,
 .checkbox-center-arrangement input[type='checkbox']:checked::after {
   transform: translateX(14px);
+}
+
+/* Styles for radiobuttons */
+.change-corner {
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  gap: 6px; /* расстояние между кружком и текстом */
+  /* font-size: 14px; */
+  cursor: pointer;
+}
+
+.change-corner input[type='radio'] {
+  accent-color: #10e91f; /* задаём цвет нативной радиокнопке */
+  cursor: pointer;
 }
