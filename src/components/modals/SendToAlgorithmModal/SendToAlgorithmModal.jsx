@@ -20,7 +20,7 @@ function SendToAlgorithmModal({
     <div className="container-modal" role="dialog" aria-modal="true">
       <div className="modal">
         <h2>Выберите параметры расстановки</h2>
-        <fieldset>
+        <fieldset className="fieldset">
           <legend>Угол относительно которого будет расстановка:</legend>
           <label className="change-corner">
             <input
@@ -64,26 +64,30 @@ function SendToAlgorithmModal({
             задний правый
           </label>
         </fieldset>
-        <div>
+        <div className="checkbox-line-arrangement">
           Требуется ли расстановка в линию
           <input
-            className="checkbox-line-arrangement"
             type="checkbox"
             checked={isLineArrangement}
             onChange={() => setIsLineArrangement(!isLineArrangement)}
           />
         </div>
-        <div>
+        <div className="checkbox-center-arrangement">
           Требуется ли расстановка от центра грузового помещения
           <input
-            className="checkbox-center-arrangement"
             type="checkbox"
             checked={isCenterArrangement}
             onChange={() => setIsCenterArrangement(!isCenterArrangement)}
           />
         </div>
-        <button onClick={onClose}>Рассчитать</button>
-        <button onClick={onClose}>Закрыть</button>
+        <div className="modal-buttons">
+          <button className="arrange-button" onClick={onClose}>
+            Расставить автоматически
+          </button>
+          <button className="close-button" onClick={onClose}>
+            Закрыть окно
+          </button>
+        </div>
       </div>
     </div>
   )
