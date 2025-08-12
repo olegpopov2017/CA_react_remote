@@ -1,4 +1,5 @@
 import './SendToAlgorithmModal.css'
+import { arrangeAccordingWithAlgorithm } from '../../../api/api.js'
 
 import { useState } from 'react'
 
@@ -16,6 +17,7 @@ function SendToAlgorithmModal({
   const changeCornerOfArrangement = (event) => {
     setSelectedCorner(event.target.value)
   }
+
   return (
     <div className="container-modal" role="dialog" aria-modal="true">
       <div className="modal">
@@ -81,7 +83,20 @@ function SendToAlgorithmModal({
           />
         </div>
         <div className="modal-buttons">
-          <button className="arrange-button" onClick={onClose}>
+          <button
+            className="arrange-button"
+            onClick={() =>
+              arrangeAccordingWithAlgorithm(
+                cargos,
+                setCargos,
+                cargoArea,
+                setCargoArea,
+                selectedCorner,
+                isLineArrangement,
+                isCenterArrangement
+              )
+            }
+          >
             Расставить автоматически
           </button>
           <button className="close-button" onClick={onClose}>
