@@ -8,6 +8,19 @@ export function arrangeAccordingWithAlgorithm(
   isLineArrangement,
   isCenterArrangemen
 ) {
+  const notLinketCuboids = (cargos) => {
+    return cargos.map((cargo) => ({
+      '#18_uuid': cargo.uuid,
+      '#19_width_X': cargo.Xwidth,
+      '#20_height_Y': cargo.Yheight,
+      '#21_length_Z': cargo.Zdepth,
+      '#22_position_x': cargo.Xposition,
+      '#23_position_y': cargo.Yposition,
+      '#24_position_z': cargo.Zposition,
+      '#25_color': cargo.userColor,
+    }))
+  }
+
   let dataToAlgorithmAPI = {
     '#11_uuid': cargoArea[0].uuid,
     '#12_width_X': cargoArea[0].Xwidth,
@@ -20,8 +33,20 @@ export function arrangeAccordingWithAlgorithm(
     '#21_start_corner': selectedCorner,
     '#23_row_arrangement': isLineArrangement,
     '#24_center_arrangement': isCenterArrangemen,
-    '#25_not_linked_cuboids': null,
+    '#25_not_linked_cuboids': notLinketCuboids(cargos),
   }
+
+  // Сохраняем как файл
+  const jsonString = JSON.stringify(dataToAlgorithmAPI, null, 2)
+  const blob = new Blob([jsonString], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'dataToAlgorithmAPI.json'
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  URL.revokeObjectURL(url)
 
   return (
     console.log('DataToAlgorithmAPI: ', dataToAlgorithmAPI),
