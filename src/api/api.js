@@ -10,18 +10,22 @@ export function arrangeAccordingWithAlgorithm(
 ) {
   const notLinketCuboids = (cargos) => {
     return cargos.map((cargo) => ({
-      '#18_uuid': cargo.uuid,
-      '#19_width_X': cargo.Xwidth,
-      '#20_height_Y': cargo.Yheight,
-      '#21_length_Z': cargo.Zdepth,
-      '#22_position_x': cargo.Xposition,
-      '#23_position_y': cargo.Yposition,
-      '#24_position_z': cargo.Zposition,
-      '#25_color': cargo.userColor,
+      '#11_uuid': cargo.uuid,
+      '#12_width_X': cargo.Xwidth,
+      '#13_height_Y': cargo.Yheight,
+      '#14_length_Z': cargo.Zdepth,
+      '#15_position_x': cargo.Xposition,
+      '#16_position_y': cargo.Yposition,
+      '#17_position_z': cargo.Zposition,
+      '#18_color': cargo.userColor,
     }))
   }
 
   let dataToAlgorithmAPI = {
+    '#00_access_token': null,
+    '#01_start_corner': selectedCorner,
+    '#02_row_arrangement': isLineArrangement,
+    '#03_center_arrangement': isCenterArrangemen,
     '#11_uuid': cargoArea[0].uuid,
     '#12_width_X': cargoArea[0].Xwidth,
     '#13_height_Y': cargoArea[0].Yheight,
@@ -29,11 +33,8 @@ export function arrangeAccordingWithAlgorithm(
     '#15_position_x': cargoArea[0].position_x,
     '#16_position_y': cargoArea[0].position_y,
     '#17_position_z': cargoArea[0].position_z,
-    '#18_arranged_cuboids': null,
-    '#21_start_corner': selectedCorner,
-    '#23_row_arrangement': isLineArrangement,
-    '#24_center_arrangement': isCenterArrangemen,
-    '#25_not_linked_cuboids': notLinketCuboids(cargos),
+    '#200_arranged_cuboids': null,
+    '#300_not_linked_cuboids': notLinketCuboids(cargos),
   }
 
   // Сохраняем как файл
@@ -50,7 +51,8 @@ export function arrangeAccordingWithAlgorithm(
 
   return (
     console.log('DataToAlgorithmAPI: ', dataToAlgorithmAPI),
-    fetch('http://localhost:5000/api/arrange', {
+    // fetch('http://localhost:5000/api/ai_arrange_engine', {
+    fetch('/api', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

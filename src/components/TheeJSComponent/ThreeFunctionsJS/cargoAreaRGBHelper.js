@@ -16,40 +16,47 @@ export function create_RGB_axes_helper_with_symbols(
   let depth = Number(depth_z)
 
   //Searching Min value for scaling and positioneted text.
-  let min = width
-  if (width >= height) {
-    min = height
-    if (height >= depth) {
-      min = depth
-    }
-  }
-  if (width >= depth) {
-    min = depth
-  }
+  // let min = width
+  // if (width >= height) {
+  //   min = height
+  //   if (height >= depth) {
+  //     min = depth
+  //   }
+  // }
+  // if (width >= depth) {
+  //   min = depth
+  // }
+  const min = Math.min(width, height, depth) //For minimum printing axes
+  const max = Math.max(width, height, depth) //For maximum printing axes
 
   //Create red axe with text "X"
   //Create text "x"
   const loader_x = new FontLoader()
-  loader_x.load('./optimer_regular.typeface.json', function (font) {
+  loader_x.load('./helvetiker_regular.typeface.json', function (font) {
     const text_geometry = new TextGeometry('X', {
       font: font,
       size: 80,
       depth: 5,
       curveSegments: 12,
-      bevelEnabled: false,
-      bevelThickness: 10,
+      bevelEnabled: true,
+      bevelThickness: 1,
       bevelSize: 8,
       bevelOffset: 0,
       bevelSegments: 5,
     })
 
-    let text_material = new THREE.MeshBasicMaterial({ color: 'red' })
+    let text_material = new THREE.MeshBasicMaterial({
+      color: 'red',
+      // side: THREE.DoubleSide,
+      // wireframe: true,
+    })
     let text = new THREE.Mesh(text_geometry, text_material)
-    text.scale.set(0.01 * (min / 4), 0.01 * (min / 4), 0.001)
-    text.position.x = width + min //*1.4
+    text.scale.set(0.01 * (max / 4), 0.01 * (max / 4), 0.001)
+    text.position.x = width + max //*1.4
     text.position.y = 0
     text.position.z = 0
     group_of_cargo_area_attribute.add(text)
+    console.log(text)
   })
 
   //Create red line of axes "X"
@@ -72,8 +79,8 @@ export function create_RGB_axes_helper_with_symbols(
       size: 80,
       depth: 5,
       curveSegments: 12,
-      bevelEnabled: false,
-      bevelThickness: 10,
+      bevelEnabled: true,
+      bevelThickness: 1,
       bevelSize: 8,
       bevelOffset: 0,
       bevelSegments: 5,
@@ -81,9 +88,9 @@ export function create_RGB_axes_helper_with_symbols(
 
     let text_material = new THREE.MeshBasicMaterial({ color: 'green' })
     let text = new THREE.Mesh(text_geometry, text_material)
-    text.scale.set(0.01 * (min / 4), 0.01 * (min / 4), 0.001)
+    text.scale.set(0.01 * (max / 4), 0.01 * (max / 4), 0.001)
     text.position.x = 0
-    text.position.y = height + min
+    text.position.y = height + max
     text.position.z = 0
     group_of_cargo_area_attribute.add(text)
   })
@@ -108,8 +115,8 @@ export function create_RGB_axes_helper_with_symbols(
       size: 80,
       depth: 5,
       curveSegments: 12,
-      bevelEnabled: false,
-      bevelThickness: 10,
+      bevelEnabled: true,
+      bevelThickness: 1,
       bevelSize: 8,
       bevelOffset: 0,
       bevelSegments: 5,
@@ -117,10 +124,10 @@ export function create_RGB_axes_helper_with_symbols(
 
     let text_material = new THREE.MeshBasicMaterial({ color: 'blue' })
     let text = new THREE.Mesh(text_geometry, text_material)
-    text.scale.set(0.01 * (min / 4), 0.01 * (min / 4), 0.001)
+    text.scale.set(0.01 * (max / 4), 0.01 * (max / 4), 0.001)
     text.position.x = 0
     text.position.y = 0
-    text.position.z = depth * 1.3 + min //+ Number(text.geometry.parameters.options.size)
+    text.position.z = depth * 1.3 + max //+ Number(text.geometry.parameters.options.size)
     text.rotation.y = Math.PI / 2
     group_of_cargo_area_attribute.add(text)
   })
