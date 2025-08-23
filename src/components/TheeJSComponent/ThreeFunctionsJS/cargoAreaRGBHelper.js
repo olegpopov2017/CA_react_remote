@@ -51,8 +51,8 @@ export function create_RGB_axes_helper_with_symbols(
       // wireframe: true,
     })
     let text = new THREE.Mesh(text_geometry, text_material)
-    text.scale.set(0.01 * (max / 4), 0.01 * (max / 4), 0.001)
-    text.position.x = width + max //*1.4
+    text.scale.set(0.01 * (max / 8), 0.01 * (max / 8), 0.001)
+    text.position.x = max * 1.4 //*1.4
     text.position.y = 0
     text.position.z = 0
     group_of_cargo_area_attribute.add(text)
@@ -63,7 +63,7 @@ export function create_RGB_axes_helper_with_symbols(
   const material_x = new THREE.LineBasicMaterial({ color: 'red' })
   const points_x = []
   points_x.push(new THREE.Vector3(0, 0, 0))
-  points_x.push(new THREE.Vector3(width * 1.2, 0, 0))
+  points_x.push(new THREE.Vector3(max * 1.2, 0, 0))
   const geometry_x = new THREE.BufferGeometry().setFromPoints(points_x)
 
   const line_x = new THREE.Line(geometry_x, material_x)
@@ -88,9 +88,9 @@ export function create_RGB_axes_helper_with_symbols(
 
     let text_material = new THREE.MeshBasicMaterial({ color: 'green' })
     let text = new THREE.Mesh(text_geometry, text_material)
-    text.scale.set(0.01 * (max / 4), 0.01 * (max / 4), 0.001)
+    text.scale.set(0.01 * (max / 8), 0.01 * (max / 8), 0.001)
     text.position.x = 0
-    text.position.y = height + max
+    text.position.y = max * 1.4
     text.position.z = 0
     group_of_cargo_area_attribute.add(text)
   })
@@ -99,7 +99,7 @@ export function create_RGB_axes_helper_with_symbols(
   const material_y = new THREE.LineBasicMaterial({ color: 'green' })
   const points_y = []
   points_y.push(new THREE.Vector3(0, 0, 0))
-  points_y.push(new THREE.Vector3(0, height_y * 1.2, 0))
+  points_y.push(new THREE.Vector3(0, max * 1.2, 0))
   const geometry_y = new THREE.BufferGeometry().setFromPoints(points_y)
 
   const line_y = new THREE.Line(geometry_y, material_y)
@@ -124,10 +124,10 @@ export function create_RGB_axes_helper_with_symbols(
 
     let text_material = new THREE.MeshBasicMaterial({ color: 'blue' })
     let text = new THREE.Mesh(text_geometry, text_material)
-    text.scale.set(0.01 * (max / 4), 0.01 * (max / 4), 0.001)
+    text.scale.set(0.01 * (max / 8), 0.01 * (max / 8), 0.001)
     text.position.x = 0
     text.position.y = 0
-    text.position.z = depth * 1.3 + max //+ Number(text.geometry.parameters.options.size)
+    text.position.z = max * 1.4 //+ Number(text.geometry.parameters.options.size)
     text.rotation.y = Math.PI / 2
     group_of_cargo_area_attribute.add(text)
   })
@@ -136,7 +136,7 @@ export function create_RGB_axes_helper_with_symbols(
   const material_z = new THREE.LineBasicMaterial({ color: 'blue' })
   const points_z = []
   points_z.push(new THREE.Vector3(0, 0, 0))
-  points_z.push(new THREE.Vector3(0, 0, depth_z * 1.2))
+  points_z.push(new THREE.Vector3(0, 0, max * 1.2))
   const geometry_z = new THREE.BufferGeometry().setFromPoints(points_z)
 
   const line_z = new THREE.Line(geometry_z, material_z)
