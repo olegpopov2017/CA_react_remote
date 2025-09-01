@@ -1,4 +1,3 @@
-// This function sent cargos,cargo area,paramemeters of the arranging (selectedCorner,lineArrangement,centerArrangemet) to algorithm, recieve results back.
 export function arrangeAccordingWithAlgorithm(
   cargos,
   setCargos,
@@ -6,7 +5,7 @@ export function arrangeAccordingWithAlgorithm(
   setCargoArea,
   selectedCorner,
   isLineArrangement,
-  isCenterArrangemen
+  isCenterArrangement // исправлено название
 ) {
   const notLinketCuboids = (cargos) => {
     return cargos.map((cargo) => ({
@@ -21,7 +20,7 @@ export function arrangeAccordingWithAlgorithm(
     }))
   }
 
-  let dataToAlgorithmAPI = {
+  const dataToAlgorithmAPI = {
     '#00_access_token': null,
     '#01_start_corner': parseInt(selectedCorner),
     '#02_row_arrangement': isLineArrangement,
@@ -37,32 +36,34 @@ export function arrangeAccordingWithAlgorithm(
     '#300_not_linked_cuboids': notLinketCuboids(cargos),
   }
 
-  // Сохраняем как файл
-  const jsonString = JSON.stringify(dataToAlgorithmAPI, null, 2)
-  const blob = new Blob([jsonString], { type: 'application/json' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = 'dataToAlgorithmAPI.json'
-  document.body.appendChild(a)
-  a.click()
-  document.body.removeChild(a)
-  URL.revokeObjectURL(url)
-
-  return (
-    console.log('DataToAlgorithmAPI: ', dataToAlgorithmAPI),
-    fetch('/api/api/arrangement', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(dataToAlgorithmAPI),
+  fetch('/api/api/arrangement', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(dataToAlgorithmAPI),
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error(`Ошибка ${response.status}`)
+      return response.json()
     })
-      // .then((response) => response.json())
-      .then((data) => {
-        // setCargos(data.cargos)
-        // setCargoArea(data.cargoArea)
-        console.log('okkkk', data)
-      })
-  )
+    .then((data) => {
+      if (data['#200_arranged_cuboids']) {
+        data['#200_arranged_cuboids'].forEach((cuboid) => {
+          setCargos((prevCargos) =>
+            prevCargos.map((cargo) =>
+              cargo.uuid === cuboid['#11_uuid']
+                ? {
+                    ...cargo,
+                    Xposition: parseInt(cuboid['#15_position_x']),
+                    Yposition: parseInt(cuboid['#16_position_y']),
+                    Zposition: parseInt(cuboid['#17_position_z']),
+                  }
+                : cargo
+            )
+          )
+        })
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка при расстановке:', error)
+    })
 }

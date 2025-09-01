@@ -56,7 +56,7 @@ export function create_RGB_axes_helper_with_symbols(
     text.position.y = 0
     text.position.z = 0
     group_of_cargo_area_attribute.add(text)
-    console.log(text)
+    // console.log(text)
   })
 
   //Create red line of axes "X"
