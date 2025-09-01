@@ -2,7 +2,7 @@ export function arrangeAccordingWithAlgorithm(
   cargos,
   setCargos,
   cargoArea,
-  setCargoArea,
+  // setCargoArea,
   selectedCorner,
   isLineArrangement,
   isCenterArrangement // исправлено название
