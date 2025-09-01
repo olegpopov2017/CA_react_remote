@@ -21,6 +21,7 @@ export function cargo_area_adding(
   let z = Number(cargoAreaProp[0].Zdepth)
 
   //Create/adding cargo area to scene.
+  //
   const area = new THREE.Box3()
   area.setFromCenterAndSize(
     new THREE.Vector3(x / 2, y / 2, z / 2),
