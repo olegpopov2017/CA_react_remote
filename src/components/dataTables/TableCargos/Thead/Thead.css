@@ -1,7 +1,21 @@
+/* делаем thead флекс-контейнером */
+thead {
+  display: flex;
+  width: 100%;
+}
+
+/* строку тоже во flex */
+thead tr {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
 thead th {
   /* Общие стили для всех строк таблицы */
+  flex: 1;
   background-color: white;
-  width: 120px;
+  min-width: 80px;
   height: 25px;
   font-size: 16px;
   font-weight: normal;
@@ -9,7 +23,7 @@ thead th {
   top: 0; /* Прилипает к верху */
 }
 thead button {
-  width: 120px;
+  width: 80%;
   background-color: #f5a5a5;
   border: none;
   border-radius: 8px;
@@ -23,5 +37,5 @@ thead button:hover {
   background-color: #c9240f;
 }
 .finishTH {
-  width: 200px;
+  width: 80%;
 }

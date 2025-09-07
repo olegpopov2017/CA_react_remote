@@ -1,7 +1,12 @@
+tr {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
 /* table cell styles */
 td {
   background-color: white;
-  width: 100px;
+  min-width: 80px;
   height: 25px;
   text-align: center;
 }
@@ -63,20 +68,3 @@ td {
 .finish-input-button-group button:hover {
   background-color: #10e91f;
 }
-
-/* .finish-input-button-group button {
-  width: 35%;
-  background-color: #d1e7dd;
-  border: none;
-  border-radius: 10px;
-    color: #155724;
-  font-weight: 600;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
-}
-
-.finish-input-button-group button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-} */

@@ -1,0 +1,41 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+
+.row.header {
+  font-weight: bold;
+  background: #f5f5f5;
+}
+
+.cell {
+  flex: 1;
+  min-width: 80px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.finish-cell {
+  flex: 2;
+}
+
+.inputCargoParameters,
+.inputQuantity {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px;
+}
+
+.finish-input-button-group {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
