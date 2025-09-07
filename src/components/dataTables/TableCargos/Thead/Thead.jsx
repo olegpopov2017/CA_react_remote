@@ -22,7 +22,7 @@ function Thead({ cargos, setCargos }) {
         <th>Layar</th>
 
         <th className="finishTH">
-          <button onClick={() => deleteAllCargos()}>Удалить все</button>
+          <button onClick={() => deleteAllCargos()}> - all</button>
         </th>
       </tr>
     </thead>

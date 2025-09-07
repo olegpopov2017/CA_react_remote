@@ -5,8 +5,9 @@ tr {
 }
 /* table cell styles */
 td {
+  flex: 1;
   background-color: white;
-  min-width: 80px;
+  /* min-width: 80px; */
   height: 25px;
   text-align: center;
 }

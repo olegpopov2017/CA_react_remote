@@ -15,7 +15,7 @@ thead th {
   /* Общие стили для всех строк таблицы */
   flex: 1;
   background-color: white;
-  min-width: 80px;
+  /* min-width: 80px; */
   height: 25px;
   font-size: 16px;
   font-weight: normal;

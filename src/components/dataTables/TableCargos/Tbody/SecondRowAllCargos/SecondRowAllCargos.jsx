@@ -53,12 +53,17 @@ function SecondRowAllCargos({ cargos, setCargos }) {
         cargos={cargos}
         setCargos={setCargos}
       />
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
       <td>
         <button
           className="delete-cargo-button"
           onClick={() => deleteCargo(cargo.uuid)}
         >
-          Удалить
+          -
         </button>
       </td>
     </tr>
