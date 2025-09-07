@@ -1,41 +1,50 @@
+html,
+body,
+#root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0; /* обязательно */
+  padding: 0;
+  overflow: hidden; /* запрещаем прокрутку body */
+}
 .main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /* padding: auto; */
 }
 
-/* СЦЕНА по центру сверху */
-.scene-wrapper {
+.row-for-tables-and-scene {
   display: flex;
-  justify-content: center;
-  /* margin-top: 20px; */
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
 }
 
-/* РЯД С ФОРМОЙ И ТАБЛИЦЕЙ */
-.tables-row {
-  display: flex;
-  justify-content: space-between; /* или space-between — если нужно отодвинуть */
-  align-items: flex-start; /* уже отлично */
-}
-
-/* ЛЕВАЯ ЧАСТЬ (форма) */
-.table-left {
-  flex: 2;
+.tables-column {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 940px;
   padding: 10px;
-  margin: 10px;
-  align-items: stretch; /* чтобы контейнер не "висел" */
-  border-collapse: collapse;
+}
+.table-up {
+  margin: 20px;
 }
 
-/* ПРАВАЯ ЧАСТЬ (таблица) */
-.table-right {
-  flex: 15;
+.table-down {
+  margin: 20px;
+}
+
+.scene-wrapper {
   display: flex;
-  justify-content: flex-start;
-  padding: 10px;
-  margin: 10px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 20px;
 }
 
 /* Delete arrow of increment/decrement in all input fields Chrome, Safari, Edge */

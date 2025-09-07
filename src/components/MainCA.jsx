@@ -14,24 +14,26 @@ function MainCA() {
   return (
     <div className="main-container">
       <Header />
-      <div className="scene-wrapper">
-        <ThreeScene
-          cargos={cargos}
-          setCargos={setCargos}
-          cargoArea={cargoArea}
-          setCargoArea={setCargoArea}
-        />
-      </div>
-      <div className="tables-row">
-        <div className="table-right">
-          <TableCargos cargos={cargos} setCargos={setCargos} />
+      <div className="row-for-tables-and-scene">
+        <div className="tables-column">
+          <div className="table-up">
+            <CargoAreaForm
+              cargoArea={cargoArea}
+              setCargoArea={setCargoArea}
+              cargos={cargos}
+              setCargos={setCargos}
+            />
+          </div>
+          <div className="table-down">
+            <TableCargos cargos={cargos} setCargos={setCargos} />
+          </div>
         </div>
-        <div className="table-left">
-          <CargoAreaForm
-            cargoArea={cargoArea}
-            setCargoArea={setCargoArea}
+        <div id="three-container" className="scene-wrapper">
+          <ThreeScene
             cargos={cargos}
             setCargos={setCargos}
+            cargoArea={cargoArea}
+            setCargoArea={setCargoArea}
           />
         </div>
       </div>

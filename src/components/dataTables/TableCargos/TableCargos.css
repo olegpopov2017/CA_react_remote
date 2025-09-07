@@ -1,7 +1,7 @@
 .table-cargos-container {
   width: 940px;
-  height: 300px;
-  overflow-y: auto;
+  height: 100%;
+  /* overflow-y: auto; */
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -9,8 +9,10 @@
 .table-cargos {
   table-layout: fixed; /* Важно! */
   width: 100%; /* Растягивается на всю ширину контейнера */
+  /* height: 100%; */
   border-collapse: collapse; /* Убирает двойные границы */
   /* border: 1px solid #ccc; */
+  overflow: auto;
 }
 
 .table-cargos th {

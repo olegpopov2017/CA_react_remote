@@ -39,8 +39,10 @@ export function createCamera() {
   return camera
 }
 export function createRenderer() {
+  const container = document.getElementById('three-container')
   let renderer = new THREE.WebGLRenderer()
-  renderer.setSize(600, 300)
+  renderer.setSize(container.clientWidth, container.clientHeight)
+  // console.log(container.clientWidth, container.clientHeight)
   return renderer
 }
 // Rotation camera with orbit controls.
