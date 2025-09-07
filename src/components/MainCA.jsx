@@ -23,6 +23,9 @@ function MainCA() {
         />
       </div>
       <div className="tables-row">
+        <div className="table-right">
+          <TableCargos cargos={cargos} setCargos={setCargos} />
+        </div>
         <div className="table-left">
           <CargoAreaForm
             cargoArea={cargoArea}
@@ -30,9 +33,6 @@ function MainCA() {
             cargos={cargos}
             setCargos={setCargos}
           />
-        </div>
-        <div className="table-right">
-          <TableCargos cargos={cargos} setCargos={setCargos} />
         </div>
       </div>
     </div>
