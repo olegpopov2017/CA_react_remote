@@ -1,0 +1,55 @@
+{
+  "hash": "b3c0b5e2",
+  "configHash": "629d3177",
+  "lockfileHash": "b5a8decf",
+  "browserHash": "86b5ec33",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "38a8c469",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "d45aa2d8",
+      "needsInterop": true
+    },
+    "uuid": {
+      "src": "../../node_modules/uuid/dist/esm-browser/index.js",
+      "file": "uuid.js",
+      "fileHash": "c8c6e7c5",
+      "needsInterop": false
+    },
+    "three": {
+      "src": "../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "d314c261",
+      "needsInterop": false
+    },
+    "three/examples/jsm/loaders/FontLoader.js": {
+      "src": "../../node_modules/three/examples/jsm/loaders/FontLoader.js",
+      "file": "three_examples_jsm_loaders_FontLoader__js.js",
+      "fileHash": "1077b4c7",
+      "needsInterop": false
+    },
+    "three/examples/jsm/geometries/TextGeometry.js": {
+      "src": "../../node_modules/three/examples/jsm/geometries/TextGeometry.js",
+      "file": "three_examples_jsm_geometries_TextGeometry__js.js",
+      "fileHash": "16ab8f4c",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-GVK3T4GU": {
+      "file": "chunk-GVK3T4GU.js"
+    },
+    "chunk-FV24Y4CC": {
+      "file": "chunk-FV24Y4CC.js"
+    },
+    "chunk-BUSYA2B4": {
+      "file": "chunk-BUSYA2B4.js"
+    }
+  }
+}
