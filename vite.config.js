@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/your-repo-name/', // ЗАМЕНИТЕ на имя вашего репозитория
+  base: '/CA_react_remote/', // ЗАМЕНИТЕ на имя вашего репозитория
   build: {
     outDir: 'docs', // Папка для сборки
     assetsDir: 'assets',
