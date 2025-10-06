@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'dist', // Папка для сборки
+    outDir: 'docs', // Папка для сборки
     sourcemap: false, // Карты кода для отладки (можно отключить в продакшене)
     minify: true, // ← тут было 'true' строкой, лучше булевый тип
     chunkSizeWarningLimit: 1000, // Лимит для предупреждений о размере чанков
