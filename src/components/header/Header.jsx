@@ -33,7 +33,7 @@ const Header = () => {
   return (
     <header>
       <div className="header-content">
-        <h2>Voyload AI fast way logistic</h2>
+        <h2>Voyload AI-fast way logistic</h2>
         <div className="user-info">
           <span>Welcome,</span>
           <span id="userDisplay">{username}</span>
